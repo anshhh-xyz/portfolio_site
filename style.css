@@ -839,6 +839,9 @@ h2,
   pointer-events: none;
   z-index: 1;
   border-radius: 14px;
+  will-change: opacity;
+  contain: paint;
+  transform: translateZ(0);
 }
 
 .project-card-inner {
