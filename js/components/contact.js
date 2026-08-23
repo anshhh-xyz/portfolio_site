@@ -1,4 +1,13 @@
 (function initContactBento() {
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
 
   const form = document.getElementById("terminal-contact-form");
   const nameInput = document.getElementById("contact-name");
@@ -17,9 +26,11 @@
 
       if (!name || !email || !msg) return;
 
+      const safeName = escapeHtml(name);
+
       if (feedback) {
         feedback.className = "terminal-feedback-output info";
-        feedback.innerHTML = `<span class="t-caret">&gt;</span> [INFO] Packaging payload (author: <span style="color:#ffffff">${name}</span>)...`;
+        feedback.innerHTML = `<span class="t-caret">&gt;</span> [INFO] Packaging payload (author: <span style="color:#ffffff">${safeName}</span>)...`;
       }
 
       if (submitBtn) {

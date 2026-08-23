@@ -73,7 +73,11 @@ function initAnimations() {
     });
   }
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  document.querySelectorAll('a[href^="#"]:not(.rail a)').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
       if (href && href.length > 1) {
@@ -83,7 +87,9 @@ function initAnimations() {
           if (typeof window.smoothScrollTo === "function") {
             window.smoothScrollTo(target, -25);
           } else {
-            target.scrollIntoView({ behavior: "smooth" });
+            target.scrollIntoView({
+              behavior: prefersReducedMotion ? "auto" : "smooth",
+            });
           }
         }
       }
