@@ -1,7 +1,3 @@
-// ==========================================================================
-// Custom HUD Square Targeting Cursor
-// ==========================================================================
-
 (function initHudCursor() {
   const cursorDot = document.getElementById("cursor-dot");
   const cursorFrame = document.getElementById("cursor-frame");
@@ -50,7 +46,6 @@
     updateCursorPos(e.clientX, e.clientY);
   });
 
-  // Smooth lerp physics for HUD frame
   function renderCursor() {
     frameX += (mouseX - frameX) * 0.25;
     frameY += (mouseY - frameY) * 0.25;
@@ -62,7 +57,6 @@
   }
   requestAnimationFrame(renderCursor);
 
-  // Click Animation
   window.addEventListener("pointerdown", () => {
     cursorFrame.classList.add("is-clicking");
     cursorDot.classList.add("is-clicking");
@@ -109,7 +103,6 @@
   attachHover(".about-edu-card", { label: "education" });
   attachHover(".about-achievements-list li", { label: "milestone" });
 
-  // Delegate skill chip hover for dynamic chips
   const skillsContainer = document.getElementById("skills-sweep-container") || document.getElementById("skills");
   if (skillsContainer) {
     skillsContainer.addEventListener("pointerover", (e) => {

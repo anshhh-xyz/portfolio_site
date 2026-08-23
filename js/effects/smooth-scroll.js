@@ -1,7 +1,3 @@
-// ==========================================================================
-// Ultra-Smooth Page-Wide Momentum & Section Transition Engine
-// ==========================================================================
-
 (function initSmoothScroll() {
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -11,7 +7,6 @@
 
   let lenisInstance = null;
 
-  // Initialize Lenis if available
   if (typeof Lenis !== "undefined") {
     lenisInstance = new Lenis({
       duration: 1.25,
@@ -42,7 +37,6 @@
     }
   }
 
-  // Global smooth scroll helper used by navigation rail and buttons
   window.smoothScrollTo = function (target, offset = -20) {
     if (!target) return;
 

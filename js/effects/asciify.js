@@ -1,7 +1,3 @@
-// ==========================================================================
-// Smooth Cyber Decryption Wave Engine (Asciify)
-// ==========================================================================
-
 const ASCII_GLYPHS = "01_#*+<>:[]/~%&!?$X^";
 
 class AsciifyEffect {
@@ -43,7 +39,6 @@ class AsciifyEffect {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Smooth deceleration curve
       const easedProgress = 1 - Math.pow(1 - progress, 3);
 
       const resolvedHead = Math.floor(easedProgress * (length + waveWidth));
@@ -110,7 +105,6 @@ function initAsciify() {
     }
   });
 
-  // Smooth scroll trigger for section headings
   const sections = document.querySelectorAll(".section");
   sections.forEach((sec) => {
     const asciifyEls = sec.querySelectorAll("[data-asciify]");
@@ -146,7 +140,6 @@ function initAsciify() {
   });
 }
 
-// Global helper to trigger decode manually
 window.triggerSectionAsciify = function (sectionId) {
   const sec = document.getElementById(sectionId);
   if (!sec) return;

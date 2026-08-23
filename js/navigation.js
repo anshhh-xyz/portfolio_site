@@ -1,7 +1,3 @@
-// ==========================================================================
-// Section Navigation & Rail Active State
-// ==========================================================================
-
 (function initNavigation() {
   const sections = document.querySelectorAll(".section");
   const navLinks = document.querySelectorAll(".rail a");

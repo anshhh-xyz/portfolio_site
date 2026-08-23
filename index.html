@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-active="hero">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -8,16 +7,11 @@
   <meta name="description" content="Ansh Gupta — Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
   <meta name="author" content="Ansh Gupta" />
   <meta name="theme-color" content="#050608" />
-
-  <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Ansh Gupta — Portfolio" />
   <meta property="og:description" content="Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
   <meta property="og:url" content="https://anshhh.xyz" />
-
-  <!-- Terminal Style SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050608'/%3E%3Cpath d='M8 10l7 6-7 6M17 22h7' stroke='%2335d68f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
-
   <link rel="stylesheet" href="style.css?v=30" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,10 +25,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 </head>
-
 <body>
-
-  <!-- Custom HUD Square Targeting Cursor -->
   <div class="hud-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="hud-cursor-frame" id="cursor-frame" aria-hidden="true">
     <div class="corner top-left"></div>
@@ -43,12 +34,8 @@
     <div class="corner bottom-right"></div>
     <span class="hud-cursor-tag" id="cursor-tag"></span>
   </div>
-
-  <!-- Deep Space Twinkling Stars & Nebula Background -->
   <div class="space-nebula-bg" aria-hidden="true"></div>
   <canvas id="space-canvas" aria-hidden="true"></canvas>
-
-  <!-- HUD-style top nav -->
   <nav class="rail" aria-label="Section navigation">
     <a href="#hero" class="rail-brand" data-target="hero" aria-label="Ansh Gupta, home">
       <span class="rail-brand-tag">
@@ -56,7 +43,6 @@
           class="rail-brand-hash">.py</span>
       </span>
     </a>
-
     <ol>
       <li>
         <a href="#hero" data-target="hero" class="active">
@@ -120,12 +106,9 @@
           <span>print(contact)</span>
         </a>
       </li>
-
     </ol>
   </nav>
-
   <main>
-
     <section id="hero" class="section hero-section">
       <div class="section-inner hero-inner">
         <div class="hero-content">
@@ -135,7 +118,6 @@
           <p class="lede" data-asciify>Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how
             they actually
             work.</p>
-
           <div class="hero-actions">
             <a href="#contact" class="hero-btn hero-btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -143,7 +125,6 @@
                 <line x1="12" y1="1" x2="12" y2="23"></line>
                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
               </svg>
-
               npx hire_me()
             </a>
             <a href="https://docs.google.com/document/d/1RmjfyQZ4F3oxc9748PpGjR5RG1XT02scZHjWZ3BNQdw/export?format=pdf" class="hero-btn hero-btn-ghost" title="Download Resume (PDF)" download="Ansh_Gupta_Resume.pdf">
@@ -157,23 +138,18 @@
             </a>
           </div>
         </div>
-
-        <!-- Interactive 3D Dithered Mascot Robot (BMO) -->
         <div class="hero-bmo-wrap" id="hero-bmo-wrap" title="Drag to rotate · Click to poke" tabindex="0" role="button" aria-label="Interactive 3D Robot Mascot">
           <canvas id="bmo-canvas" width="480" height="540" aria-label="3D dithered robot mascot"></canvas>
         </div>
       </div>
     </section>
-
     <section id="about" class="section">
       <div class="section-inner about-inner">
         <div class="about-header">
           <p class="section-tag">// 01. whoami</p>
           <h2 data-asciify>def about(self):</h2>
         </div>
-
         <div class="about-grid">
-          <!-- Left Column: Story, Education & Achievements -->
           <div class="about-story">
             <div class="about-subblock">
               <h3 class="about-subheading"><span class="hash-tag">#</span> About Me</h3>
@@ -182,7 +158,6 @@
                 learning, real-time computer vision, and robust end-to-end web architectures.
               </p>
             </div>
-
             <div class="about-subblock">
               <h3 class="about-subheading"><span class="hash-tag">#</span> Education</h3>
               <div class="about-edu-card">
@@ -192,7 +167,6 @@
                 <div class="edu-gpa"><span class="gpa-label">CGPA:</span> <span class="gpa-val">8.9 / 10</span></div>
               </div>
             </div>
-
             <div class="about-subblock">
               <h3 class="about-subheading"><span class="hash-tag">#</span> Key Achievements</h3>
               <ul class="about-achievements-list">
@@ -208,8 +182,6 @@
               </ul>
             </div>
           </div>
-
-          <!-- Right Column: Interactive Bash Git Terminal Card -->
           <div class="about-terminal">
             <div class="terminal-header">
               <div class="terminal-prompt-tab">
@@ -232,16 +204,13 @@
   <span class="t-add">modified:   models/yolo_vision_core.py</span>
   <span class="t-add">modified:   backend/inference_api.ts</span>
   <span class="t-add">modified:   frontend/reactive_hud.tsx</span>
-
 <span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="t-cmd">git log -1 --stat</span>
 <span class="t-hash">commit 8f3b2a1</span> <span class="t-dim">(HEAD -&gt; main)</span>
 <span class="t-dim">Author:</span> Ansh Gupta &lt;anshhh.xyz&gt;
 <span class="t-dim">Summary:</span> feat: architect high-throughput ML &amp; web systems
-
  models/yolo_pipeline.py    | 124 <span class="t-plus">++++++++++++++++</span>
  services/event_engine.ts   |  86 <span class="t-plus">+++++++++++</span>
  2 files changed, 210 insertions(+)
-
 <span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="t-cmd">git push origin main</span>
 <span class="t-success">✓ [main 8f3b2a1] Everything up-to-date. Ready to build.</span>
 <span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="terminal-cursor"></span></code></pre>
@@ -250,14 +219,12 @@
         </div>
       </div>
     </section>
-
     <section id="skills" class="section">
       <div class="section-inner">
         <div class="section-header">
           <p class="section-tag">// 02. stack</p>
           <h2 data-asciify>class TechStack:</h2>
         </div>
-
         <div class="skills-subnav" role="tablist" aria-label="Skill categories">
           <button type="button" class="skills-tab active" data-category="languages" role="tab" aria-selected="true"
             aria-controls="skills-panel-0">Languages</button>
@@ -281,19 +248,15 @@
         </div>
       </div>
     </section>
-
     <section id="projects" class="section">
       <div class="section-inner projects-container">
         <div class="section-header">
           <p class="section-tag">// 03. engineering &amp; builds</p>
           <h2 data-asciify>console.log(projects)</h2>
         </div>
-
         <div class="project-grid">
-          <!-- 01. DetectIQ -->
           <article class="project-card" data-project="detectiq" tabindex="0">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
-
             <div class="project-card-inner">
               <div class="project-card-top">
                 <div class="project-meta-row">
@@ -321,8 +284,6 @@
                 <h3 class="project-title">DetectIQ</h3>
                 <p class="project-tagline">Road Object Localization &amp; Collision Risk Engine</p>
               </div>
-
-              <!-- Brief (Revealed on Hover) -->
               <div class="project-brief">
                 <p class="project-desc">
                   Two-stage deep learning vision pipeline coupling <strong>YOLOv11s</strong> spatial detection on IDD
@@ -330,13 +291,11 @@
                   Time-to-Collision estimation.
                 </p>
               </div>
-
               <div class="project-stats-strip">
                 <span class="stat-pill"><span class="stat-num">~30 FPS</span> Realtime</span>
                 <span class="stat-pill"><span class="stat-num">85</span> Classes</span>
                 <span class="stat-pill"><span class="stat-num">IPM</span> TTC Risk</span>
               </div>
-
               <div class="project-tags">
                 <span class="project-tag">Python</span>
                 <span class="project-tag">PyTorch</span>
@@ -346,11 +305,8 @@
               </div>
             </div>
           </article>
-
-          <!-- 02. Attendily -->
           <article class="project-card" data-project="attendily" tabindex="0">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
-
             <div class="project-card-inner">
               <div class="project-card-top">
                 <div class="project-meta-row">
@@ -378,21 +334,17 @@
                 <h3 class="project-title">Attendily</h3>
                 <p class="project-tagline">AI-Powered Proxy-Resistant Attendance PWA</p>
               </div>
-
-              <!-- Brief (Revealed on Hover) -->
               <div class="project-brief">
                 <p class="project-desc">
                   Zero-install offline-capable PWA with <strong>Google Gemini</strong> multimodal timetable OCR, dual-mode
                   smart overrides, and sub-100ms row-level security caching on Supabase.
                 </p>
               </div>
-
               <div class="project-stats-strip">
                 <span class="stat-pill"><span class="stat-num">98.4%</span> Cache Hit</span>
                 <span class="stat-pill"><span class="stat-num">Offline</span> PWA</span>
                 <span class="stat-pill"><span class="stat-num">Row-Level</span> Security</span>
               </div>
-
               <div class="project-tags">
                 <span class="project-tag">Vanilla JS</span>
                 <span class="project-tag">Supabase</span>
@@ -402,11 +354,8 @@
               </div>
             </div>
           </article>
-
-          <!-- 03. Lagom -->
           <article class="project-card" data-project="lagom" tabindex="0">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
-
             <div class="project-card-inner">
               <div class="project-card-top">
                 <div class="project-meta-row">
@@ -434,21 +383,17 @@
                 <h3 class="project-title">Lagom</h3>
                 <p class="project-tagline">High-Throughput AI Text Normalization Pipeline</p>
               </div>
-
-              <!-- Brief (Revealed on Hover) -->
               <div class="project-brief">
                 <p class="project-desc">
                   Parallelized synthetic data pipeline orchestrating a 5-worker thread pool with dynamic rate-sleep
                   queues and checkpoint buffers to curate a 23MB+ paired dataset for fine-tuning open-source LLMs.
                 </p>
               </div>
-
               <div class="project-stats-strip">
                 <span class="stat-pill"><span class="stat-num">23 MB+</span> Corpus</span>
                 <span class="stat-pill"><span class="stat-num">5x</span> Thread Pool</span>
                 <span class="stat-pill"><span class="stat-num">Zero-Loss</span> Buffers</span>
               </div>
-
               <div class="project-tags">
                 <span class="project-tag">Python</span>
                 <span class="project-tag">Gemini API</span>
@@ -458,11 +403,8 @@
               </div>
             </div>
           </article>
-
-          <!-- 04. AutoExpense -->
           <article class="project-card" data-project="autoexpense" tabindex="0">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
-
             <div class="project-card-inner">
               <div class="project-card-top">
                 <div class="project-meta-row">
@@ -491,8 +433,6 @@
                 <h3 class="project-title">AutoExpense</h3>
                 <p class="project-tagline">Zero-Touch SMS Webhook &amp; Financial Ledger</p>
               </div>
-
-              <!-- Brief (Revealed on Hover) -->
               <div class="project-brief">
                 <p class="project-desc">
                   Zero-latency serverless financial tracking system that intercepts Android banking SMS transaction
@@ -500,13 +440,11 @@
                   date-partitioned Google Sheets.
                 </p>
               </div>
-
               <div class="project-stats-strip">
                 <span class="stat-pill"><span class="stat-num">&lt; 150ms</span> Latency</span>
                 <span class="stat-pill"><span class="stat-num">YYYY-MM</span> Partition</span>
                 <span class="stat-pill"><span class="stat-num">Google</span> Cloud IAM</span>
               </div>
-
               <div class="project-tags">
                 <span class="project-tag">Node.js</span>
                 <span class="project-tag">Express</span>
@@ -519,15 +457,12 @@
         </div>
       </div>
     </section>
-
     <section id="experience" class="section">
       <div class="section-inner experience-container">
         <div class="section-header">
           <p class="section-tag">// 04. industry experience &amp; timeline</p>
           <h2 data-asciify>pd.read_csv(experience)</h2>
         </div>
-
-        <!-- Glow Dotted Year Timeline Wave Navigation (Years 2026 -> 2031) -->
         <div class="year-nav-container" id="year-nav">
           <div class="year-wave-wrapper">
             <svg class="year-wave-svg" viewBox="0 0 800 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -539,63 +474,42 @@
                   <stop offset="100%" stop-color="#35d68f" />
                 </linearGradient>
               </defs>
-
-              <!-- Background Horizontal Gridlines -->
               <line x1="20" y1="25" x2="780" y2="25" class="wave-gridline" />
               <line x1="20" y1="65" x2="780" y2="65" class="wave-gridline" />
               <line x1="20" y1="105" x2="780" y2="105" class="wave-gridline" />
               <line x1="20" y1="145" x2="780" y2="145" class="wave-gridline" />
-
-              <!-- Base Inactive Track (Subtle Ghost Track) -->
               <path id="year-wave-bg" class="wave-track-bg"
                 d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
-
-              <!-- Glow Halo Layer (Native Fast GPU Vector Stroke) -->
               <path id="year-wave-glow" class="wave-track-glow"
                 d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
-
-              <!-- Active Laser Core Track (Draws on Scroll) -->
               <path id="year-wave-active" class="wave-track-active"
                 d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
-
-              <!-- Year Milestone Nodes (2026 only highlighted, 2027-2031 unhighlighted) -->
-              <!-- 2026 (Highlighted & Active) -->
               <g class="year-node is-highlighted is-active" data-year="2026" transform="translate(60, 110)">
                 <circle class="node-halo" r="14" />
                 <circle class="node-glow-ring" r="8" />
                 <circle class="node-core active-pulse" r="4.5" />
                 <text class="node-year-label bold" y="24">2026</text>
               </g>
-
-              <!-- 2027 (Unhighlighted) -->
               <g class="year-node is-future" data-year="2027" transform="translate(190, 140)">
                 <circle class="node-glow-ring" r="6.5" />
                 <circle class="node-core" r="3.5" />
                 <text class="node-year-label" y="-14">2027</text>
               </g>
-
-              <!-- 2028 (Unhighlighted) -->
               <g class="year-node is-future" data-year="2028" transform="translate(330, 75)">
                 <circle class="node-glow-ring" r="6.5" />
                 <circle class="node-core" r="3.5" />
                 <text class="node-year-label" y="-14">2028</text>
               </g>
-
-              <!-- 2029 (Unhighlighted) -->
               <g class="year-node is-future" data-year="2029" transform="translate(460, 100)">
                 <circle class="node-glow-ring" r="6.5" />
                 <circle class="node-core" r="3.5" />
                 <text class="node-year-label" y="24">2029</text>
               </g>
-
-              <!-- 2030 (Unhighlighted) -->
               <g class="year-node is-future" data-year="2030" transform="translate(590, 55)">
                 <circle class="node-glow-ring" r="6.5" />
                 <circle class="node-core" r="3.5" />
                 <text class="node-year-label" y="-14">2030</text>
               </g>
-
-              <!-- 2031 (Unhighlighted) -->
               <g class="year-node is-future" data-year="2031" transform="translate(730, 22)">
                 <circle class="node-glow-ring" r="6.5" />
                 <circle class="node-core" r="3.5" />
@@ -604,8 +518,6 @@
             </svg>
           </div>
         </div>
-
-        <!-- Single Featured Industry Experience Card: Decofy Design & Co -->
         <div class="experience-single-wrap">
           <article class="experience-card" id="decofy-card">
             <div class="exp-card-header">
@@ -628,13 +540,11 @@
               <h3 class="exp-title">Decofy Design &amp; Co</h3>
               <p class="exp-subtitle">Freelance Web Developer</p>
             </div>
-
             <div class="exp-body">
               <p class="exp-summary">
                 Designed, developed, and deployed the official production website for <strong>Decofy Design &amp; Co</strong> from scratch, focusing on technical SEO, responsive architecture, and cross-device performance optimization.
               </p>
             </div>
-
             <div class="exp-tags">
               <span class="project-tag">Web Development</span>
               <span class="project-tag">Technical SEO</span>
@@ -645,16 +555,13 @@
         </div>
       </div>
     </section>
-
     <section id="contact" class="section">
       <div class="section-inner contact-container">
         <div class="section-header">
           <p class="section-tag">// 05. ping &amp; connect</p>
           <h2 data-asciify>return contact()</h2>
         </div>
-
         <div class="contact-bento-grid">
-          <!-- Bento Cell 1: Interactive Bash Terminal Enquiry Box -->
           <div class="bento-card bento-terminal about-terminal">
             <div class="terminal-header">
               <div class="terminal-prompt-tab">
@@ -675,28 +582,24 @@
                 <div class="terminal-cmd-intro">
                   <span class="t-p"><span class="t-user">guest@client</span>:<span class="t-dir">~/enquiry</span>$</span> <span class="t-cmd">./dispatch.sh --interactive</span>
                 </div>
-
                 <div class="terminal-input-group">
                   <label for="contact-name" class="terminal-input-label">
                     <span class="t-label-tag">NAME $</span>
                   </label>
                   <input type="text" id="contact-name" class="terminal-input-field" placeholder="Your name or team" required autocomplete="name" />
                 </div>
-
                 <div class="terminal-input-group">
                   <label for="contact-email" class="terminal-input-label">
                     <span class="t-label-tag">EMAIL $</span>
                   </label>
                   <input type="email" id="contact-email" class="terminal-input-field" placeholder="name@domain.com" required autocomplete="email" />
                 </div>
-
                 <div class="terminal-input-group">
                   <label for="contact-msg" class="terminal-input-label">
                     <span class="t-label-tag">MESSAGE $</span>
                   </label>
                   <textarea id="contact-msg" class="terminal-input-field terminal-textarea" rows="3" placeholder="Project scope, systems query, or hello..." required></textarea>
                 </div>
-
                 <div class="terminal-form-actions">
                   <button type="submit" class="terminal-submit-btn" id="terminal-submit-btn">
                     <span class="terminal-btn-caret">❯</span>
@@ -708,8 +611,6 @@
               </form>
             </div>
           </div>
-
-          <!-- Bento Cell 2: Direct Mailbox Hub -->
           <div class="bento-card bento-mail">
             <div class="bento-card-top">
               <div class="bento-header-row">
@@ -724,7 +625,6 @@
               <h3 class="bento-title">Direct Mailbox</h3>
               <p class="bento-desc">Drop a direct transmission for freelance gigs, performance audits, or architecture chats.</p>
             </div>
-
             <div class="bento-mail-actions">
               <div class="bento-email-readout">
                 <span class="email-text" id="email-address-text">anshhh.xyz@gmail.com</span>
@@ -742,8 +642,6 @@
               </a>
             </div>
           </div>
-
-          <!-- Bento Cell 3: GitHub Node -->
           <div class="bento-card bento-github">
             <div class="bento-card-top">
               <div class="bento-header-row">
@@ -762,8 +660,6 @@
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
             </a>
           </div>
-
-          <!-- Bento Cell 4: Availability & Status HUD -->
           <div class="bento-card bento-status">
             <div class="bento-status-inner">
               <div class="status-left">
@@ -781,10 +677,7 @@
         </div>
       </div>
     </section>
-
   </main>
-
-  <!-- Modular Scripts (Zero CORS / Offline file:// & HTTP Web Compatible) -->
   <script defer src="js/effects/smooth-scroll.js"></script>
   <script defer src="js/data/skills-data.js"></script>
   <script defer src="js/effects/cursor.js"></script>
@@ -799,5 +692,4 @@
   <script defer src="js/navigation.js"></script>
   <script defer src="js/main.js"></script>
 </body>
-
 </html>

@@ -1,9 +1,5 @@
-// ==========================================================================
-// Contact Magic Bento Grid & Interactive Bash Terminal Controller
-// ==========================================================================
-
 (function initContactBento() {
-  // 1. Interactive Bash Terminal Form
+
   const form = document.getElementById("terminal-contact-form");
   const nameInput = document.getElementById("contact-name");
   const emailInput = document.getElementById("contact-email");
@@ -55,7 +51,6 @@
     });
   }
 
-  // 2. 1-Click Copy Email Button
   const copyBtn = document.getElementById("copy-email-btn");
   const emailTextEl = document.getElementById("email-address-text");
 
@@ -73,7 +68,7 @@
           if (label) label.textContent = "Copy";
         }, 2200);
       } catch (err) {
-        // Fallback for non-https/restricted environments
+
         const temp = document.createElement("textarea");
         temp.value = email;
         document.body.appendChild(temp);

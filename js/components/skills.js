@@ -1,7 +1,3 @@
-// ==========================================================================
-// Skills Component Controller
-// ==========================================================================
-
 (function initSkillsController() {
   const tabs = Array.from(document.querySelectorAll(".skills-tab"));
   const outputCanvas = document.getElementById("skills-sweep-canvas");

@@ -1,7 +1,3 @@
-// ==========================================================================
-// Deep Space Twinkling Starfield & Meteors Engine
-// ==========================================================================
-
 (function setupSpaceBackground() {
   const spaceCanvas = document.getElementById("space-canvas");
   if (!spaceCanvas) return;

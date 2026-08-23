@@ -1,7 +1,3 @@
-// ==========================================================================
-// Ultra-Smooth 120fps Year Wave Navbar Engine (GSAP Scrub Sync)
-// ==========================================================================
-
 (function initYearWaveNavbar() {
   function setupEngine() {
     const activePath = document.getElementById("year-wave-active");
@@ -17,7 +13,6 @@
       pathLength = 950;
     }
 
-    // Initialize both paths
     activePath.style.strokeDasharray = `${pathLength} ${pathLength}`;
     activePath.style.strokeDashoffset = pathLength;
 
@@ -34,7 +29,6 @@
       if (glowPath) glowPath.style.strokeDashoffset = offset;
     }
 
-    // Use GSAP ScrollTrigger for 120fps hardware-accelerated scrubbing
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.create({
         trigger: expSection,
@@ -46,7 +40,7 @@
         },
       });
     } else {
-      // Passive fallback
+
       let isTicking = false;
       function onScroll() {
         if (!isTicking) {

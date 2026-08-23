@@ -1,7 +1,3 @@
-// ==========================================================================
-// High-Performance Pixelated Dissolve Transition & ReactBits Card Engine
-// ==========================================================================
-
 (function initPixelDissolveCards() {
   const cards = document.querySelectorAll(".project-card");
   if (!cards.length) return;
@@ -24,14 +20,13 @@
     let height = 0;
     let dpr = 1;
     let pixels = [];
-    let progress = 0; // 0 to 1
-    let targetProgress = 0; // 0 or 1
+    let progress = 0; 
+    let targetProgress = 0; 
     let lastTime = performance.now();
 
-    const PIXEL_SIZE = 16; // Visible discrete retro pixel block size
-    const DURATION = 340; // ms for full dissolve transition
+    const PIXEL_SIZE = 16; 
+    const DURATION = 340; 
 
-    // Pre-curated flash colors for high-tech pixel transition
     const FLASH_COLORS = [
       "#ffffff",
       "#f8fafc",
@@ -50,7 +45,6 @@
       return x * x * x;
     }
 
-    // 1. Build and cache the pixel grid once per layout dimension
     function buildPixelGrid() {
       const cols = Math.ceil(width / PIXEL_SIZE);
       const rows = Math.ceil(height / PIXEL_SIZE);
@@ -79,7 +73,6 @@
       }
     }
 
-    // 2. Synchronize canvas backing store ONLY on layout resize (never on hover)
     function syncCanvasSize() {
       const rect = card.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
@@ -102,13 +95,11 @@
 
       buildPixelGrid();
 
-      // Redraw current progress state if active
       if (progress > 0) {
         drawFrame();
       }
     }
 
-    // 3. Fast delay update on cursor interaction (cheap: no canvas resize or memory reallocation)
     function updateOriginDelays(originX, originY) {
       if (!pixels.length) return;
 
@@ -147,7 +138,6 @@
           ctx.fillStyle = p.color;
         }
 
-        // Slight 0.75px overlap on full expansion to eliminate sub-pixel seams
         const extra = localT >= 0.95 ? 0.75 : 0;
         const renderSize = PIXEL_SIZE * sizeRatio + extra;
         const offsetX = p.x + (PIXEL_SIZE - renderSize) / 2;
@@ -168,7 +158,6 @@
         progress = Math.max(progress - speed, 0.0);
       }
 
-      // Synchronize DOM text color switch at midpoint
       if (progress >= 0.45 && !card.classList.contains("is-pixel-active")) {
         card.classList.add("is-pixel-active");
       } else if (progress < 0.45 && card.classList.contains("is-pixel-active")) {
@@ -197,16 +186,13 @@
       }
     }
 
-    // ResizeObserver watches card layout changes only
     const ro = new ResizeObserver(() => {
       syncCanvasSize();
     });
     ro.observe(card);
 
-    // Initial setup
     syncCanvasSize();
 
-    // Desktop hover interactions
     if (!isTouchDevice) {
       card.addEventListener("mouseenter", (e) => {
         const rect = card.getBoundingClientRect();
@@ -229,7 +215,6 @@
       });
     }
 
-    // Mobile / Touch interactions
     card.addEventListener("click", (e) => {
       if (e.target.closest(".project-icon-link")) {
         return;
@@ -261,7 +246,6 @@
       }
     });
 
-    // Keyboard accessibility support
     card.addEventListener("focus", () => {
       isHovered = true;
       targetProgress = 1.0;
@@ -277,7 +261,6 @@
     });
   });
 
-  // Mobile outside tap dismiss
   if (isTouchDevice) {
     document.addEventListener("click", (e) => {
       if (!e.target.closest(".project-card")) {

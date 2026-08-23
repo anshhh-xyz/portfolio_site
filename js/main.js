@@ -1,7 +1,3 @@
-// ==========================================================================
-// Portfolio Main Bootstrapper & Smooth Section Transitions (GSAP)
-// ==========================================================================
-
 function initAnimations() {
   if (typeof initAsciify === "function") {
     initAsciify();
@@ -15,7 +11,6 @@ function initAnimations() {
       const inner = sec.querySelector(".section-inner");
       if (!inner) return;
 
-      // Smooth & Gentle Section Entrance
       gsap.fromTo(
         inner,
         { opacity: 0.35, y: 24, scale: 0.99, transformOrigin: "center bottom" },
@@ -33,7 +28,6 @@ function initAnimations() {
         }
       );
 
-      // Section Headers & Tags Smooth Float
       const headers = inner.querySelectorAll(".section-tag, h2, .lede");
       if (headers.length > 0) {
         gsap.fromTo(
@@ -55,7 +49,6 @@ function initAnimations() {
       }
     });
 
-    // Individual Card Smooth Reveal
     const cards = document.querySelectorAll(
       ".project-card, .about-terminal, .about-edu-card, .experience-card, .bento-card, .skills-card-grid"
     );
@@ -80,7 +73,6 @@ function initAnimations() {
     });
   }
 
-  // Smooth scroll for all hash links across the page (e.g. hero CTA buttons)
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
