@@ -54,16 +54,18 @@
       const prevIndex = currentTabIndex;
       currentTabIndex = index;
 
+      const nextCategory = tab.dataset.category;
+      const targetSlot = sweepInstance ? (sweepInstance.current() === 0 ? 1 : 0) : 0;
+      const targetContent = targetSlot === 0 ? slot0Content : slot1Content;
+
       tabs.forEach((t) => {
         t.classList.remove("active");
         t.setAttribute("aria-selected", "false");
       });
       tab.classList.add("active");
       tab.setAttribute("aria-selected", "true");
-
-      const nextCategory = tab.dataset.category;
-      const targetSlot = sweepInstance ? (sweepInstance.current() === 0 ? 1 : 0) : 0;
-      const targetContent = targetSlot === 0 ? slot0Content : slot1Content;
+      tab.setAttribute("aria-controls", `skills-panel-${targetSlot}`);
+      targetContent.setAttribute("aria-labelledby", tab.id || `tab-${nextCategory}`);
 
       renderCategoryTo(nextCategory, targetContent);
 

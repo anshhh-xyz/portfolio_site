@@ -3,16 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Ansh — Portfolio</title>
+  <title>Ansh Gupta — Portfolio</title>
   <meta name="description" content="Ansh Gupta — Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
   <meta name="author" content="Ansh Gupta" />
   <meta name="theme-color" content="#050608" />
+  <link rel="canonical" href="https://anshhh.xyz/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Ansh Gupta — Portfolio" />
   <meta property="og:description" content="Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
   <meta property="og:url" content="https://anshhh.xyz" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ansh Gupta — Portfolio" />
+  <meta name="twitter:description" content="Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
+  <meta name="twitter:creator" content="@anshhh_xyz" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ansh Gupta",
+    "url": "https://anshhh.xyz",
+    "jobTitle": "Software Engineer",
+    "sameAs": [
+      "https://github.com/anshhh-xyz"
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Computer Vision",
+      "Full-stack Web Development",
+      "Python",
+      "TypeScript",
+      "Three.js"
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050608'/%3E%3Cpath d='M8 10l7 6-7 6M17 22h7' stroke='%2335d68f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="style.css?v=30" />
+  <link rel="stylesheet" href="style.css?v=31" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -26,6 +51,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 </head>
 <body>
+  <noscript>
+    <div style="background:#0f172a;color:#35d68f;padding:0.75rem 1rem;text-align:center;font-family:monospace;font-size:0.82rem;border-bottom:1px solid rgba(53,214,143,0.3);">
+      ✦ For full interactive 3D, physics, and canvas transitions, please enable JavaScript in your browser.
+    </div>
+  </noscript>
   <div class="hud-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="hud-cursor-frame" id="cursor-frame" aria-hidden="true">
     <div class="corner top-left"></div>
@@ -226,24 +256,24 @@
           <h2 data-asciify>class TechStack:</h2>
         </div>
         <div class="skills-subnav" role="tablist" aria-label="Skill categories">
-          <button type="button" class="skills-tab active" data-category="languages" role="tab" aria-selected="true"
+          <button type="button" class="skills-tab active" id="tab-languages" data-category="languages" role="tab" aria-selected="true"
             aria-controls="skills-panel-0">Languages</button>
-          <button type="button" class="skills-tab" data-category="aiml" role="tab" aria-selected="false"
+          <button type="button" class="skills-tab" id="tab-aiml" data-category="aiml" role="tab" aria-selected="false"
             aria-controls="skills-panel-0">AI/ML Frameworks</button>
-          <button type="button" class="skills-tab" data-category="tools" role="tab" aria-selected="false"
+          <button type="button" class="skills-tab" id="tab-tools" data-category="tools" role="tab" aria-selected="false"
             aria-controls="skills-panel-0">Tools</button>
-          <button type="button" class="skills-tab" data-category="deployment" role="tab" aria-selected="false"
+          <button type="button" class="skills-tab" id="tab-deployment" data-category="deployment" role="tab" aria-selected="false"
             aria-controls="skills-panel-0">Deployment</button>
         </div>
         <div class="skills-sweep-container" id="skills-sweep-container">
           <canvas class="skills-sweep-canvas" id="skills-sweep-canvas" aria-hidden="true"></canvas>
           <div class="skills-slot is-active" id="skills-slot-0">
             <canvas class="skills-slot-source" style="display: none;"></canvas>
-            <div class="skills-panel" id="skills-panel-0" role="tabpanel"></div>
+            <div class="skills-panel" id="skills-panel-0" role="tabpanel" aria-labelledby="tab-languages"></div>
           </div>
           <div class="skills-slot" id="skills-slot-1">
             <canvas class="skills-slot-source" style="display: none;"></canvas>
-            <div class="skills-panel" id="skills-panel-1" role="tabpanel"></div>
+            <div class="skills-panel" id="skills-panel-1" role="tabpanel" aria-labelledby="tab-languages"></div>
           </div>
         </div>
       </div>
@@ -255,7 +285,7 @@
           <h2 data-asciify>console.log(projects)</h2>
         </div>
         <div class="project-grid">
-          <article class="project-card" data-project="detectiq" tabindex="0">
+          <article class="project-card" data-project="detectiq">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
             <div class="project-card-inner">
               <div class="project-card-top">
@@ -305,7 +335,7 @@
               </div>
             </div>
           </article>
-          <article class="project-card" data-project="attendily" tabindex="0">
+          <article class="project-card" data-project="attendily">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
             <div class="project-card-inner">
               <div class="project-card-top">
@@ -354,7 +384,7 @@
               </div>
             </div>
           </article>
-          <article class="project-card" data-project="lagom" tabindex="0">
+          <article class="project-card" data-project="lagom">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
             <div class="project-card-inner">
               <div class="project-card-top">
@@ -403,7 +433,7 @@
               </div>
             </div>
           </article>
-          <article class="project-card" data-project="autoexpense" tabindex="0">
+          <article class="project-card" data-project="autoexpense">
             <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
             <div class="project-card-inner">
               <div class="project-card-top">

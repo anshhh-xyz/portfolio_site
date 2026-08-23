@@ -443,12 +443,21 @@
     window.addEventListener('pointerup', stopDrag);
     window.addEventListener('pointercancel', stopDrag);
 
-    container.addEventListener('click', () => {
+    function handlePokeInteraction() {
       triggerWave();
       faceGroup.position.y = 0.62;
       setTimeout(() => {
         faceGroup.position.y = 0.58;
       }, 350);
+    }
+
+    container.addEventListener('click', handlePokeInteraction);
+
+    container.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handlePokeInteraction();
+      }
     });
 
     let clock = new THREE.Clock();
