@@ -381,7 +381,16 @@
     });
     let clock = new THREE.Clock();
     let animFrameId = null;
-    function animate() {
+    let lastRenderTime = 0;
+    const isMobileDevice = window.innerWidth < 768;
+    const minFrameInterval = isMobileDevice ? 33 : 16;
+    function animate(now) {
+      animFrameId = requestAnimationFrame(animate);
+      if (now && lastRenderTime) {
+        const elapsed = now - lastRenderTime;
+        if (elapsed < minFrameInterval) return;
+      }
+      lastRenderTime = now || performance.now();
       const elapsedTime = clock.getElapsedTime();
       currentRotY += (targetRotY - currentRotY) * 0.08;
       currentRotX += (targetRotX - currentRotX) * 0.08;
@@ -422,7 +431,6 @@
         }
       }
       renderer.render(scene, camera);
-      animFrameId = requestAnimationFrame(animate);
     }
     function startLoop() {
       if (!animFrameId) {

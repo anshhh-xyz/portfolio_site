@@ -75,10 +75,18 @@ function initAnimations() {
     }
   };
 
-  if (typeof requestIdleCallback === "function") {
-    requestIdleCallback(setupScrollAnimations, { timeout: 350 });
+  const scheduleScrollSetup = () => {
+    if (typeof requestIdleCallback === "function") {
+      requestIdleCallback(setupScrollAnimations, { timeout: 800 });
+    } else {
+      setTimeout(setupScrollAnimations, 120);
+    }
+  };
+
+  if (document.readyState === "complete") {
+    scheduleScrollSetup();
   } else {
-    setTimeout(setupScrollAnimations, 50);
+    window.addEventListener("load", scheduleScrollSetup);
   }
 
   const prefersReducedMotion = window.matchMedia(

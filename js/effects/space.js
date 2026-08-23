@@ -204,7 +204,19 @@
     { passive: true }
   );
 
-  function spaceLoop() {
+  let lastSpaceFrame = 0;
+  const isMobileScreen = window.innerWidth < 768;
+  const minSpaceInterval = isMobileScreen ? 33 : 16;
+
+  function spaceLoop(now) {
+    animFrameId = requestAnimationFrame(spaceLoop);
+
+    if (now && lastSpaceFrame) {
+      const elapsed = now - lastSpaceFrame;
+      if (elapsed < minSpaceInterval) return;
+    }
+    lastSpaceFrame = now || performance.now();
+
     currentOffsetX += (targetOffsetX - currentOffsetX) * 0.04;
     currentOffsetY += (targetOffsetY - currentOffsetY) * 0.04;
 
@@ -219,8 +231,6 @@
       meteors[j].update();
       meteors[j].draw(ctx);
     }
-
-    animFrameId = requestAnimationFrame(spaceLoop);
   }
 
   function startLoop() {
