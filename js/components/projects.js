@@ -1,11 +1,12 @@
-(function initPixelDissolveCards() {
-  const cards = document.querySelectorAll(".project-card");
-  if (!cards.length) return;
+(function setupPixelDissolveCards() {
+  function initPixelDissolveCards() {
+    const cards = document.querySelectorAll(".project-card");
+    if (!cards.length) return;
 
-  const isTouchDevice =
-    "ontouchstart" in window ||
-    navigator.maxTouchPoints > 0 ||
-    window.matchMedia("(pointer: coarse)").matches;
+    const isTouchDevice =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
 
   cards.forEach((card) => {
     const canvas = card.querySelector(".project-pixel-canvas");
@@ -261,13 +262,34 @@
     });
   });
 
-  if (isTouchDevice) {
-    document.addEventListener("click", (e) => {
-      if (!e.target.closest(".project-card")) {
-        cards.forEach((card) => {
-          card.classList.remove("is-pixel-active");
-        });
-      }
-    });
+    if (isTouchDevice) {
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".project-card")) {
+          cards.forEach((card) => {
+            card.classList.remove("is-pixel-active");
+          });
+        }
+      });
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    const projSec = document.getElementById('projects');
+    if (projSec) {
+      const projObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          initPixelDissolveCards();
+          projObs.disconnect();
+        }
+      }, { rootMargin: '300px' });
+      projObs.observe(projSec);
+      return;
+    }
+  }
+
+  if (typeof requestIdleCallback === "function") {
+    requestIdleCallback(initPixelDissolveCards, { timeout: 500 });
+  } else {
+    setTimeout(initPixelDissolveCards, 100);
   }
 })();

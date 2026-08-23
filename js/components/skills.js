@@ -5,7 +5,9 @@
   const slot1Content = document.getElementById("skills-panel-1");
   const slot0Source = document.querySelector("#skills-slot-0 .skills-slot-source");
   const slot1Source = document.querySelector("#skills-slot-1 .skills-slot-source");
+
   if (!tabs.length || !slot0Content || !outputCanvas || !slot0Source || !slot1Source) return;
+
   function renderCategoryTo(category, panel) {
     const skills = typeof SKILLS_DATA !== "undefined" ? (SKILLS_DATA[category] || []) : [];
     panel.innerHTML = skills
@@ -20,36 +22,62 @@
       )
       .join("");
   }
+
   const initialTab = document.querySelector(".skills-tab.active") || tabs[0];
   let currentTabIndex = tabs.indexOf(initialTab);
   renderCategoryTo(initialTab.dataset.category, slot0Content);
-  const sweepInstance = typeof createAsciiSweep === "function" ? createAsciiSweep({
-    output: outputCanvas,
-    slots: [
-      { source: slot0Source, content: slot0Content },
-      { source: slot1Source, content: slot1Content },
-    ],
-  }, {
-    angle: 0,
-    duration: 0.8,
-    band: 0.28,
-    softness: 0.45,
-    turbulence: 0.5,
-    trail: 0.75,
-    scale: 2,
-    color: "#5b8cff",
-    background: "#050608",
-    glow: 2,
-    aberration: 5,
-  }) : null;
+
+  let sweepInstance = null;
+  function getSweepInstance() {
+    if (!sweepInstance && typeof createAsciiSweep === "function") {
+      sweepInstance = createAsciiSweep({
+        output: outputCanvas,
+        slots: [
+          { source: slot0Source, content: slot0Content },
+          { source: slot1Source, content: slot1Content },
+        ],
+      }, {
+        angle: 0,
+        duration: 0.8,
+        band: 0.28,
+        softness: 0.45,
+        turbulence: 0.5,
+        trail: 0.75,
+        scale: 2,
+        color: "#5b8cff",
+        background: "#050608",
+        glow: 2,
+        aberration: 5,
+      });
+    }
+    return sweepInstance;
+  }
+
+  if ('IntersectionObserver' in window) {
+    const skillsSec = document.getElementById('skills');
+    if (skillsSec) {
+      const skillsObs = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          getSweepInstance();
+          skillsObs.disconnect();
+        }
+      }, { rootMargin: '300px' });
+      skillsObs.observe(skillsSec);
+    }
+  }
+
   function switchTab(index) {
     if (index === currentTabIndex || index < 0 || index >= tabs.length) return;
+
     const tab = tabs[index];
     const prevIndex = currentTabIndex;
     currentTabIndex = index;
+
     const nextCategory = tab.dataset.category;
-    const targetSlot = sweepInstance ? (sweepInstance.current() === 0 ? 1 : 0) : 0;
+    const instance = getSweepInstance();
+    const targetSlot = instance ? (instance.current() === 0 ? 1 : 0) : 0;
     const targetContent = targetSlot === 0 ? slot0Content : slot1Content;
+
     tabs.forEach((t) => {
       t.classList.remove("active");
       t.setAttribute("aria-selected", "false");
@@ -61,17 +89,22 @@
     tab.setAttribute("aria-controls", `skills-panel-${targetSlot}`);
     tab.focus();
     targetContent.setAttribute("aria-labelledby", tab.id || `tab-${nextCategory}`);
+
     renderCategoryTo(nextCategory, targetContent);
+
     const angle = index >= prevIndex ? 0 : 180;
+
     requestAnimationFrame(() => {
-      if (sweepInstance) {
-        sweepInstance.capture();
-        sweepInstance.sweep(targetSlot, { angle });
+      if (instance) {
+        instance.capture();
+        instance.sweep(targetSlot, { angle });
       }
     });
   }
+
   tabs.forEach((tab, index) => {
     tab.addEventListener("click", () => switchTab(index));
+
     tab.addEventListener("keydown", (e) => {
       let targetIndex = null;
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
@@ -83,6 +116,7 @@
       } else if (e.key === "End") {
         targetIndex = tabs.length - 1;
       }
+
       if (targetIndex !== null) {
         e.preventDefault();
         switchTab(targetIndex);

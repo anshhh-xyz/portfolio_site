@@ -243,5 +243,9 @@
     }
   });
 
-  startLoop();
+  if (typeof requestIdleCallback === "function") {
+    requestIdleCallback(() => startLoop(), { timeout: 250 });
+  } else {
+    setTimeout(startLoop, 40);
+  }
 })();
