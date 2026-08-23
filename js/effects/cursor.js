@@ -99,7 +99,7 @@
   attachHover(".bento-github", { label: "github" });
   attachHover(".bento-copy-btn", { label: "copy" });
   attachHover(".terminal-submit-btn", { label: "dispatch" });
-  attachHover(".bento-action-btn", { label: "connect" });
+  attachHover(".hero-bmo-wrap", { isProject: true, label: "mascot" });
   attachHover(".rail a", { label: "" });
   attachHover(".skills-tab", { label: "" });
   attachHover("a:not(.rail a):not(.project-icon-link):not(.bento-action-btn):not(.exp-preview-link)", { label: "open" });

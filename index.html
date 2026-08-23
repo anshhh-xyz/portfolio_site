@@ -18,7 +18,7 @@
   <!-- Terminal Style SVG Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050608'/%3E%3Cpath d='M8 10l7 6-7 6M17 22h7' stroke='%2335d68f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
 
-  <link rel="stylesheet" href="style.css?v=23" />
+  <link rel="stylesheet" href="style.css?v=29" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
@@ -29,6 +29,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 </head>
 
 <body>
@@ -125,34 +126,41 @@
 
   <main>
 
-    <section id="hero" class="section">
-      <div class="section-inner">
-        <p class="eyebrow" data-asciify>·I make stuff for fun ·</p>
-        <h1 data-asciify>Ansh Gupta</h1>
-        <p class="hero-role" data-asciify>Software Engineer</p>
-        <p class="lede" data-asciify>Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how
-          they actually
-          work.</p>
+    <section id="hero" class="section hero-section">
+      <div class="section-inner hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow" data-asciify>·I make stuff for fun ·</p>
+          <h1 data-asciify>Ansh Gupta</h1>
+          <p class="hero-role" data-asciify>Software Engineer</p>
+          <p class="lede" data-asciify>Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how
+            they actually
+            work.</p>
 
-        <div class="hero-actions">
-          <a href="#contact" class="hero-btn hero-btn-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
+          <div class="hero-actions">
+            <a href="#contact" class="hero-btn hero-btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
 
-            npx hire_me()
-          </a>
-          <a href="https://docs.google.com/document/d/1RmjfyQZ4F3oxc9748PpGjR5RG1XT02scZHjWZ3BNQdw/export?format=pdf" class="hero-btn hero-btn-ghost" title="Download Resume (PDF)" download="Ansh_Gupta_Resume.pdf">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3v12" />
-              <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
-              <path d="M4.5 19.5h15" />
-            </svg>
-            pip install resume.pdf
-          </a>
+              npx hire_me()
+            </a>
+            <a href="https://docs.google.com/document/d/1RmjfyQZ4F3oxc9748PpGjR5RG1XT02scZHjWZ3BNQdw/export?format=pdf" class="hero-btn hero-btn-ghost" title="Download Resume (PDF)" download="Ansh_Gupta_Resume.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v12" />
+                <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
+                <path d="M4.5 19.5h15" />
+              </svg>
+              pip install resume.pdf
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive 3D Dithered Mascot Robot (BMO) -->
+        <div class="hero-bmo-wrap" id="hero-bmo-wrap" title="Drag to rotate · Click to poke" tabindex="0" role="button" aria-label="Interactive 3D Robot Mascot">
+          <canvas id="bmo-canvas" width="480" height="540" aria-label="3D dithered robot mascot"></canvas>
         </div>
       </div>
     </section>
@@ -787,6 +795,7 @@
   <script defer src="js/components/projects.js"></script>
   <script defer src="js/components/experience.js"></script>
   <script defer src="js/components/contact.js"></script>
+  <script defer src="js/components/bmo.js"></script>
   <script defer src="js/navigation.js"></script>
   <script defer src="js/main.js"></script>
 </body>
