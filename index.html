@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" data-active="hero">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Ansh — Portfolio</title>
+  <link rel="stylesheet" href="style.css?v=21" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Custom HUD Square Targeting Cursor -->
+  <div class="hud-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="hud-cursor-frame" id="cursor-frame" aria-hidden="true">
+    <div class="corner top-left"></div>
+    <div class="corner top-right"></div>
+    <div class="corner bottom-left"></div>
+    <div class="corner bottom-right"></div>
+    <span class="hud-cursor-tag" id="cursor-tag"></span>
+  </div>
+
+  <!-- Deep Space Twinkling Stars & Nebula Background -->
+  <div class="space-nebula-bg" aria-hidden="true"></div>
+  <canvas id="space-canvas" aria-hidden="true"></canvas>
+
+  <!-- HUD-style top nav -->
+  <nav class="rail" aria-label="Section navigation">
+    <a href="#hero" class="rail-brand" aria-label="Ansh Gupta, home">
+      <span class="rail-brand-tag">
+        <span class="rail-brand-name">Ansh_</span><span class="rail-brand-suffix">Portfolio</span><span
+          class="rail-brand-hash">.py</span>
+      </span>
+    </a>
+
+    <ol>
+      <li>
+        <a href="#hero" data-target="hero" class="active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 11.5 12 4l9 7.5" />
+            <path d="M5.5 10v9a1 1 0 0 0 1 1H9v-6h6v6h2.5a1 1 0 0 0 1-1v-9" />
+          </svg>
+          <span>&lt;hero/&gt;</span>
+        </a>
+      </li>
+      <li>
+        <a href="#about" data-target="about">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.4" />
+            <path d="M5 20c0-3.6 3.1-6.2 7-6.2s7 2.6 7 6.2" />
+          </svg>
+          <span>def about():</span>
+        </a>
+      </li>
+      <li>
+        <a href="#skills" data-target="skills">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="m8.5 8-4 4 4 4" />
+            <path d="m15.5 8 4 4-4 4" />
+            <path d="m13.2 5.5-2.4 13" />
+          </svg>
+          <span>skills[]</span>
+        </a>
+      </li>
+      <li>
+        <a href="#projects" data-target="projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M3.5 8a1.5 1.5 0 0 1 1.5-1.5h4l1.6 2H19a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 19 18.5H5A1.5 1.5 0 0 1 3.5 17V8Z" />
+          </svg>
+          <span>import projects</span>
+        </a>
+      </li>
+      <li>
+        <a href="#experience" data-target="experience">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="7.5" width="17" height="11" rx="1.5" />
+            <path d="M8.5 7.5V6a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 6v1.5" />
+            <path d="M3.5 12.5h17" />
+          </svg>
+          <span>model.fit(experience)</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" data-target="contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
+            <path d="m4 7 8 5.5L20 7" />
+          </svg>
+          <span>print(contact)</span>
+        </a>
+      </li>
+
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="hero" class="section">
+      <div class="section-inner">
+        <p class="eyebrow" data-asciify>·I make stuff for fun ·</p>
+        <h1 data-asciify>Ansh Gupta</h1>
+        <p class="hero-role" data-asciify>Software Engineer</p>
+        <p class="lede" data-asciify>Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how
+          they actually
+          work.</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="hero-btn hero-btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+
+            npx hire_me()
+          </a>
+          <a href="resume.pdf" class="hero-btn hero-btn-ghost" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v12" />
+              <path d="m7.5 10.5 4.5 4.5 4.5-4.5" />
+              <path d="M4.5 19.5h15" />
+            </svg>
+            pip install resume.pdf
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-inner about-inner">
+        <div class="about-header">
+          <p class="section-tag">// 01. whoami</p>
+          <h2 data-asciify>def about(self):</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Left Column: Story, Education & Achievements -->
+          <div class="about-story">
+            <div class="about-subblock">
+              <h3 class="about-subheading"><span class="hash-tag">#</span> About Me</h3>
+              <p class="about-lead">
+                Software Engineer passionate about building scalable, high-performance systems. Focusing on machine
+                learning, real-time computer vision, and robust end-to-end web architectures.
+              </p>
+            </div>
+
+            <div class="about-subblock">
+              <h3 class="about-subheading"><span class="hash-tag">#</span> Education</h3>
+              <div class="about-edu-card">
+                <div class="edu-title">B.Tech in Information Technology</div>
+                <div class="edu-school">Maharaja Agrasen Institute of Technology <span
+                    class="edu-years">(2025–2029)</span></div>
+                <div class="edu-gpa"><span class="gpa-label">CGPA:</span> <span class="gpa-val">8.9 / 10</span></div>
+              </div>
+            </div>
+
+            <div class="about-subblock">
+              <h3 class="about-subheading"><span class="hash-tag">#</span> Key Achievements</h3>
+              <ul class="about-achievements-list">
+                <li><span class="achieve-dot"></span><span><strong>Hackathon wins:</strong> still loading... ⚡</span>
+                </li>
+                <li><span class="achieve-dot"></span><span>Academic Excellence: Maintaining <strong>8.9 CGPA</strong> at
+                    MAIT</span></li>
+                <li><span class="achieve-dot"></span><span>Shipped end-to-end ML/CV road detection &amp; PWA tracking
+                    tooling</span></li>
+                <li><span class="achieve-dot"></span><span>Engineered low-latency pipelines with PyTorch, YOLO &amp;
+                    Node.js</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Bash Git Terminal Card -->
+          <div class="about-terminal">
+            <div class="terminal-header">
+              <div class="terminal-prompt-tab">
+                <svg class="terminal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                <span class="terminal-title">bash — ansh@portfolio:~</span>
+              </div>
+              <div class="terminal-meta">
+                <span class="terminal-branch">git:(main)</span>
+                <span class="terminal-status-dot"></span>
+              </div>
+            </div>
+            <div class="terminal-body">
+              <pre><code><span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="t-cmd">git status</span>
+<span class="t-out">On branch main</span>
+<span class="t-out">Changes staged for commit:</span>
+  <span class="t-add">modified:   models/yolo_vision_core.py</span>
+  <span class="t-add">modified:   backend/inference_api.ts</span>
+  <span class="t-add">modified:   frontend/reactive_hud.tsx</span>
+
+<span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="t-cmd">git log -1 --stat</span>
+<span class="t-hash">commit 8f3b2a1</span> <span class="t-dim">(HEAD -&gt; main)</span>
+<span class="t-dim">Author:</span> Ansh Gupta &lt;anshhh.xyz&gt;
+<span class="t-dim">Summary:</span> feat: architect high-throughput ML &amp; web systems
+
+ models/yolo_pipeline.py    | 124 <span class="t-plus">++++++++++++++++</span>
+ services/event_engine.ts   |  86 <span class="t-plus">+++++++++++</span>
+ 2 files changed, 210 insertions(+)
+
+<span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="t-cmd">git push origin main</span>
+<span class="t-success">✓ [main 8f3b2a1] Everything up-to-date. Ready to build.</span>
+<span class="t-p"><span class="t-user">ansh@dev</span>:<span class="t-dir">~/portfolio</span><span class="t-git">(main)</span>$</span> <span class="terminal-cursor"></span></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="section-tag">// 02. stack</p>
+          <h2 data-asciify>class TechStack:</h2>
+        </div>
+
+        <div class="skills-subnav" role="tablist" aria-label="Skill categories">
+          <button type="button" class="skills-tab active" data-category="languages" role="tab" aria-selected="true"
+            aria-controls="skills-panel">Languages</button>
+          <button type="button" class="skills-tab" data-category="aiml" role="tab" aria-selected="false"
+            aria-controls="skills-panel">AI/ML Frameworks</button>
+          <button type="button" class="skills-tab" data-category="tools" role="tab" aria-selected="false"
+            aria-controls="skills-panel">Tools</button>
+          <button type="button" class="skills-tab" data-category="deployment" role="tab" aria-selected="false"
+            aria-controls="skills-panel">Deployment</button>
+        </div>
+        <div class="skills-sweep-container" id="skills-sweep-container">
+          <canvas class="skills-sweep-canvas" id="skills-sweep-canvas" aria-hidden="true"></canvas>
+          <div class="skills-slot is-active" id="skills-slot-0">
+            <canvas class="skills-slot-source" style="display: none;"></canvas>
+            <div class="skills-panel" id="skills-panel-0" role="tabpanel"></div>
+          </div>
+          <div class="skills-slot" id="skills-slot-1">
+            <canvas class="skills-slot-source" style="display: none;"></canvas>
+            <div class="skills-panel" id="skills-panel-1" role="tabpanel"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-inner projects-container">
+        <div class="section-header">
+          <p class="section-tag">// 03. engineering &amp; builds</p>
+          <h2 data-asciify>console.log(projects)</h2>
+        </div>
+
+        <div class="project-grid">
+          <!-- 01. DetectIQ -->
+          <article class="project-card" data-project="detectiq" tabindex="0">
+            <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
+
+            <div class="project-card-inner">
+              <div class="project-card-top">
+                <div class="project-meta-row">
+                  <div class="project-meta-left">
+                    <span class="project-cat">// 01 · ADAS &amp; VISION</span>
+                    <span class="project-status"><span class="pulse-dot active"></span> active dev</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/anshhh-xyz/DetectIQ" class="project-icon-link" target="_blank"
+                      rel="noopener" aria-label="DetectIQ Source Code (GitHub)" title="Source Code">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </a>
+                    <a href="https://github.com/anshhh-xyz/DetectIQ#demo" class="project-icon-link" target="_blank"
+                      rel="noopener" aria-label="DetectIQ Live Demo" title="Live Demo">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <h3 class="project-title">DetectIQ</h3>
+                <p class="project-tagline">Road Object Localization &amp; Collision Risk Engine</p>
+              </div>
+
+              <!-- Brief (Revealed on Hover) -->
+              <div class="project-brief">
+                <p class="project-desc">
+                  Two-stage deep learning vision pipeline coupling <strong>YOLOv11s</strong> spatial detection on IDD
+                  with an <strong>EfficientNet-B0</strong> 85-class signage classifier and monocular IPM for predictive
+                  Time-to-Collision estimation.
+                </p>
+              </div>
+
+              <div class="project-stats-strip">
+                <span class="stat-pill"><span class="stat-num">~30 FPS</span> Realtime</span>
+                <span class="stat-pill"><span class="stat-num">85</span> Classes</span>
+                <span class="stat-pill"><span class="stat-num">IPM</span> TTC Risk</span>
+              </div>
+
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">PyTorch</span>
+                <span class="project-tag">YOLOv11s</span>
+                <span class="project-tag">EfficientNet-B0</span>
+                <span class="project-tag">OpenCV</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02. Attendily -->
+          <article class="project-card" data-project="attendily" tabindex="0">
+            <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
+
+            <div class="project-card-inner">
+              <div class="project-card-top">
+                <div class="project-meta-row">
+                  <div class="project-meta-left">
+                    <span class="project-cat">// 02 · FULL-STACK &amp; PWA</span>
+                    <span class="project-status"><span class="pulse-dot deployed"></span> live pwa</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/anshhh-xyz/Attendily" class="project-icon-link" target="_blank"
+                      rel="noopener" aria-label="Attendily Source Code (GitHub)" title="Source Code">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </a>
+                    <a href="https://attendily.vercel.app" class="project-icon-link" target="_blank" rel="noopener"
+                      aria-label="Attendily Live Demo" title="Live Demo">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <h3 class="project-title">Attendily</h3>
+                <p class="project-tagline">Attendance &amp; Schedule Forecasting Engine</p>
+              </div>
+
+              <!-- Brief (Revealed on Hover) -->
+              <div class="project-brief">
+                <p class="project-desc">
+                  Offline-first Progressive Web App integrating Supabase Edge Functions with <strong>Gemini Flash
+                    OCR</strong> for instant timetable photo ingestion, backed by <code>pg_cron</code> workers for 5-min
+                  pre-class push alerts.
+                </p>
+              </div>
+
+              <div class="project-stats-strip">
+                <span class="stat-pill"><span class="stat-num">100%</span> PWA</span>
+                <span class="stat-pill"><span class="stat-num">Gemini</span> OCR</span>
+                <span class="stat-pill"><span class="stat-num">pg_cron</span> Web Push</span>
+              </div>
+
+              <div class="project-tags">
+                <span class="project-tag">Vanilla JS</span>
+                <span class="project-tag">Supabase</span>
+                <span class="project-tag">PostgreSQL RLS</span>
+                <span class="project-tag">Gemini API</span>
+                <span class="project-tag">Service Workers</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03. Lagom -->
+          <article class="project-card" data-project="lagom" tabindex="0">
+            <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
+
+            <div class="project-card-inner">
+              <div class="project-card-top">
+                <div class="project-meta-row">
+                  <div class="project-meta-left">
+                    <span class="project-cat">// 03 · DISTRIBUTED NLP</span>
+                    <span class="project-status"><span class="pulse-dot ready"></span> 23mb corpus</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/anshhh-xyz/Lagom" class="project-icon-link" target="_blank"
+                      rel="noopener" aria-label="Lagom Source Code (GitHub)" title="Source Code">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </a>
+                    <a href="https://huggingface.co/datasets" class="project-icon-link" target="_blank" rel="noopener"
+                      aria-label="Lagom Dataset Demo" title="Dataset & Demo">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <h3 class="project-title">Lagom</h3>
+                <p class="project-tagline">High-Throughput AI Text Normalization Pipeline</p>
+              </div>
+
+              <!-- Brief (Revealed on Hover) -->
+              <div class="project-brief">
+                <p class="project-desc">
+                  Parallelized synthetic data pipeline orchestrating a 5-worker thread pool with dynamic rate-sleep
+                  queues and checkpoint buffers to curate a 23MB+ paired dataset for fine-tuning open-source LLMs.
+                </p>
+              </div>
+
+              <div class="project-stats-strip">
+                <span class="stat-pill"><span class="stat-num">23 MB+</span> Corpus</span>
+                <span class="stat-pill"><span class="stat-num">5x</span> Thread Pool</span>
+                <span class="stat-pill"><span class="stat-num">Zero-Loss</span> Buffers</span>
+              </div>
+
+              <div class="project-tags">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Gemini API</span>
+                <span class="project-tag">Pandas</span>
+                <span class="project-tag">ThreadPoolExecutor</span>
+                <span class="project-tag">Regex NLP</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04. AutoExpense -->
+          <article class="project-card" data-project="autoexpense" tabindex="0">
+            <canvas class="project-pixel-canvas" aria-hidden="true"></canvas>
+
+            <div class="project-card-inner">
+              <div class="project-card-top">
+                <div class="project-meta-row">
+                  <div class="project-meta-left">
+                    <span class="project-cat">// 04 · SERVERLESS AUTOMATION</span>
+                    <span class="project-status"><span class="pulse-dot deployed"></span> 24/7 daemon</span>
+                  </div>
+                  <div class="project-links">
+                    <a href="https://github.com/anshhh-xyz/AutoExpense" class="project-icon-link" target="_blank"
+                      rel="noopener" aria-label="AutoExpense Source Code (GitHub)" title="Source Code">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                      </svg>
+                    </a>
+                    <a href="https://github.com/anshhh-xyz/AutoExpense#architecture" class="project-icon-link"
+                      target="_blank" rel="noopener" aria-label="AutoExpense Live Demo / Architecture"
+                      title="Live Demo / Specs">
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <h3 class="project-title">AutoExpense</h3>
+                <p class="project-tagline">Zero-Touch SMS Webhook &amp; Financial Ledger</p>
+              </div>
+
+              <!-- Brief (Revealed on Hover) -->
+              <div class="project-brief">
+                <p class="project-desc">
+                  Zero-latency serverless financial tracking system that intercepts Android banking SMS transaction
+                  alerts via Tasker webhooks, parses debit/credit amounts with regex logic, and streams into
+                  date-partitioned Google Sheets.
+                </p>
+              </div>
+
+              <div class="project-stats-strip">
+                <span class="stat-pill"><span class="stat-num">&lt; 150ms</span> Latency</span>
+                <span class="stat-pill"><span class="stat-num">YYYY-MM</span> Partition</span>
+                <span class="stat-pill"><span class="stat-num">Google</span> Cloud IAM</span>
+              </div>
+
+              <div class="project-tags">
+                <span class="project-tag">Node.js</span>
+                <span class="project-tag">Express</span>
+                <span class="project-tag">Google Sheets API</span>
+                <span class="project-tag">Tasker Android</span>
+                <span class="project-tag">Google Cloud IAM</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="section-inner experience-container">
+        <div class="section-header">
+          <p class="section-tag">// 04. industry experience &amp; timeline</p>
+          <h2 data-asciify>pd.read_csv(experience)</h2>
+        </div>
+
+        <!-- Glow Dotted Year Timeline Wave Navigation (Years 2026 -> 2031) -->
+        <div class="year-nav-container" id="year-nav">
+          <div class="year-wave-wrapper">
+            <svg class="year-wave-svg" viewBox="0 0 800 160" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <defs>
+                <linearGradient id="year-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#8bb2ff" />
+                  <stop offset="25%" stop-color="#b8a5fe" />
+                  <stop offset="60%" stop-color="#c4b5fd" />
+                  <stop offset="100%" stop-color="#35d68f" />
+                </linearGradient>
+              </defs>
+
+              <!-- Background Horizontal Gridlines -->
+              <line x1="20" y1="25" x2="780" y2="25" class="wave-gridline" />
+              <line x1="20" y1="65" x2="780" y2="65" class="wave-gridline" />
+              <line x1="20" y1="105" x2="780" y2="105" class="wave-gridline" />
+              <line x1="20" y1="145" x2="780" y2="145" class="wave-gridline" />
+
+              <!-- Base Inactive Track (Subtle Ghost Track) -->
+              <path id="year-wave-bg" class="wave-track-bg"
+                d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
+
+              <!-- Glow Halo Layer (Native Fast GPU Vector Stroke) -->
+              <path id="year-wave-glow" class="wave-track-glow"
+                d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
+
+              <!-- Active Laser Core Track (Draws on Scroll) -->
+              <path id="year-wave-active" class="wave-track-active"
+                d="M 60,110 C 110,115 140,140 190,140 C 250,140 280,75 330,75 C 380,75 410,100 460,100 C 510,100 540,55 590,55 C 640,55 680,22 730,22" />
+
+              <!-- Year Milestone Nodes (2026 only highlighted, 2027-2031 unhighlighted) -->
+              <!-- 2026 (Highlighted & Active) -->
+              <g class="year-node is-highlighted is-active" data-year="2026" transform="translate(60, 110)">
+                <circle class="node-halo" r="14" />
+                <circle class="node-glow-ring" r="8" />
+                <circle class="node-core active-pulse" r="4.5" />
+                <text class="node-year-label bold" y="24">2026</text>
+              </g>
+
+              <!-- 2027 (Unhighlighted) -->
+              <g class="year-node is-future" data-year="2027" transform="translate(190, 140)">
+                <circle class="node-glow-ring" r="6.5" />
+                <circle class="node-core" r="3.5" />
+                <text class="node-year-label" y="-14">2027</text>
+              </g>
+
+              <!-- 2028 (Unhighlighted) -->
+              <g class="year-node is-future" data-year="2028" transform="translate(330, 75)">
+                <circle class="node-glow-ring" r="6.5" />
+                <circle class="node-core" r="3.5" />
+                <text class="node-year-label" y="-14">2028</text>
+              </g>
+
+              <!-- 2029 (Unhighlighted) -->
+              <g class="year-node is-future" data-year="2029" transform="translate(460, 100)">
+                <circle class="node-glow-ring" r="6.5" />
+                <circle class="node-core" r="3.5" />
+                <text class="node-year-label" y="24">2029</text>
+              </g>
+
+              <!-- 2030 (Unhighlighted) -->
+              <g class="year-node is-future" data-year="2030" transform="translate(590, 55)">
+                <circle class="node-glow-ring" r="6.5" />
+                <circle class="node-core" r="3.5" />
+                <text class="node-year-label" y="-14">2030</text>
+              </g>
+
+              <!-- 2031 (Unhighlighted) -->
+              <g class="year-node is-future" data-year="2031" transform="translate(730, 22)">
+                <circle class="node-glow-ring" r="6.5" />
+                <circle class="node-core" r="3.5" />
+                <text class="node-year-label" y="24">2031</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Single Featured Industry Experience Card: Decofy Design & Co -->
+        <div class="experience-single-wrap">
+          <article class="experience-card" id="decofy-card">
+            <div class="exp-card-header">
+              <div class="exp-role-row">
+                <div class="exp-role-left">
+                  <span class="exp-cat">// FREELANCE</span>
+                  <span class="exp-status"><span class="pulse-dot active"></span> live production</span>
+                </div>
+                <div class="exp-links">
+                  <a href="https://www.decofydesignco.in" class="exp-preview-link" target="_blank" rel="noopener"
+                    aria-label="Visit Decofy Design & Co Website (Live Preview)" title="Live Preview">
+                    <span>decofydesignco.in</span>
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <h3 class="exp-title">Decofy Design &amp; Co</h3>
+              <p class="exp-subtitle">Freelance Web Developer</p>
+            </div>
+
+            <div class="exp-body">
+              <p class="exp-summary">
+                Designed, developed, and deployed the official production website for <strong>Decofy Design &amp; Co</strong> from scratch, focusing on technical SEO, responsive architecture, and cross-device performance optimization.
+              </p>
+            </div>
+
+            <div class="exp-tags">
+              <span class="project-tag">Web Development</span>
+              <span class="project-tag">Technical SEO</span>
+              <span class="project-tag">UI/UX</span>
+              <span class="project-tag">Performance</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-inner contact-container">
+        <div class="section-header">
+          <p class="section-tag">// 05. ping &amp; connect</p>
+          <h2 data-asciify>return contact()</h2>
+        </div>
+
+        <div class="contact-bento-grid">
+          <!-- Bento Cell 1: Interactive Bash Terminal Enquiry Box -->
+          <div class="bento-card bento-terminal about-terminal">
+            <div class="terminal-header">
+              <div class="terminal-prompt-tab">
+                <svg class="terminal-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+                <span class="terminal-title">bash — ansh@portfolio: ~/contact/enquiry.sh</span>
+              </div>
+              <div class="terminal-meta">
+                <span class="terminal-branch">git:(main)</span>
+                <span class="terminal-status-dot"></span>
+              </div>
+            </div>
+            <div class="terminal-body contact-terminal-body">
+              <form id="terminal-contact-form" class="terminal-form">
+                <div class="terminal-cmd-intro">
+                  <span class="t-p"><span class="t-user">guest@client</span>:<span class="t-dir">~/enquiry</span>$</span> <span class="t-cmd">./dispatch.sh --interactive</span>
+                </div>
+
+                <div class="terminal-input-group">
+                  <label for="contact-name" class="terminal-input-label">
+                    <span class="t-label-tag">NAME $</span>
+                  </label>
+                  <input type="text" id="contact-name" class="terminal-input-field" placeholder="Your name or team" required autocomplete="name" />
+                </div>
+
+                <div class="terminal-input-group">
+                  <label for="contact-email" class="terminal-input-label">
+                    <span class="t-label-tag">EMAIL $</span>
+                  </label>
+                  <input type="email" id="contact-email" class="terminal-input-field" placeholder="name@domain.com" required autocomplete="email" />
+                </div>
+
+                <div class="terminal-input-group">
+                  <label for="contact-msg" class="terminal-input-label">
+                    <span class="t-label-tag">MESSAGE $</span>
+                  </label>
+                  <textarea id="contact-msg" class="terminal-input-field terminal-textarea" rows="3" placeholder="Project scope, systems query, or hello..." required></textarea>
+                </div>
+
+                <div class="terminal-form-actions">
+                  <button type="submit" class="terminal-submit-btn" id="terminal-submit-btn">
+                    <span class="terminal-btn-caret">❯</span>
+                    <span>./transmit_payload.sh</span>
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  </button>
+                  <div id="terminal-feedback" class="terminal-feedback-output" aria-live="polite"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Bento Cell 2: Direct Mailbox Hub -->
+          <div class="bento-card bento-mail">
+            <div class="bento-card-top">
+              <div class="bento-header-row">
+                <div class="bento-icon-box mail-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                </div>
+                <span class="bento-badge"><span class="pulse-dot active"></span> ~4h response</span>
+              </div>
+              <h3 class="bento-title">Direct Mailbox</h3>
+              <p class="bento-desc">Drop a direct transmission for freelance gigs, performance audits, or architecture chats.</p>
+            </div>
+
+            <div class="bento-mail-actions">
+              <div class="bento-email-readout">
+                <span class="email-text" id="email-address-text">anshhh.xyz@gmail.com</span>
+                <button type="button" class="bento-copy-btn" id="copy-email-btn" title="Copy Email Address" aria-label="Copy Email Address">
+                  <svg class="copy-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-label">Copy</span>
+                </button>
+              </div>
+              <a href="mailto:anshhh.xyz@gmail.com" class="bento-action-btn primary" title="Open in Email App">
+                <span>Send Email</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bento Cell 3: GitHub Node -->
+          <div class="bento-card bento-github">
+            <div class="bento-card-top">
+              <div class="bento-header-row">
+                <div class="bento-icon-box github-icon">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                </div>
+                <span class="bento-badge">// OPEN SOURCE</span>
+              </div>
+              <h3 class="bento-title">github.com/anshhh-xyz</h3>
+              <p class="bento-desc">Explore open-source models, PyTorch pipelines, and utility packages.</p>
+            </div>
+            <a href="https://github.com/anshhh-xyz" target="_blank" rel="noopener" class="bento-action-btn" title="Explore GitHub Repositories">
+              <span>Explore Codebase</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+
+          <!-- Bento Cell 4: Availability & Status HUD -->
+          <div class="bento-card bento-status">
+            <div class="bento-status-inner">
+              <div class="status-left">
+                <span class="pulse-dot active"></span>
+                <div>
+                  <div class="status-heading">Status: Available for Work</div>
+                  <div class="status-sub">Open for Freelance Web Performance, ML &amp; Systems Engineering roles</div>
+                </div>
+              </div>
+              <div class="status-right">
+                <span class="stat-pill"><span class="stat-num">IST</span> UTC+5:30</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modular Scripts (Zero CORS / Offline file:// & HTTP Web Compatible) -->
+  <script defer src="js/effects/smooth-scroll.js"></script>
+  <script defer src="js/data/skills-data.js"></script>
+  <script defer src="js/effects/cursor.js"></script>
+  <script defer src="js/effects/space.js"></script>
+  <script defer src="js/effects/asciify.js"></script>
+  <script defer src="js/effects/ascii-sweep.js"></script>
+  <script defer src="js/components/skills.js"></script>
+  <script defer src="js/components/projects.js"></script>
+  <script defer src="js/components/experience.js"></script>
+  <script defer src="js/components/contact.js"></script>
+  <script defer src="js/navigation.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+
+</html>
