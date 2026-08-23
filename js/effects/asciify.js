@@ -105,39 +105,23 @@ function initAsciify() {
     }
   });
 
-  const sections = document.querySelectorAll(".section");
-  sections.forEach((sec) => {
-    const asciifyEls = sec.querySelectorAll("[data-asciify]");
-    if (asciifyEls.length === 0) return;
-
-    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.create({
-        trigger: sec,
-        start: "top 80%",
-        onEnter: () => {
-          asciifyEls.forEach((el) => {
-            const instance = asciifyInstances.get(el);
-            if (instance) instance.play();
-          });
-        },
-      });
-    } else {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              asciifyEls.forEach((el) => {
-                const instance = asciifyInstances.get(el);
-                if (instance) instance.play();
-              });
-            }
-          });
-        },
-        { threshold: 0.3 }
-      );
-      observer.observe(sec);
-    }
-  });
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const asciifyEls = entry.target.querySelectorAll("[data-asciify]");
+            asciifyEls.forEach((el) => {
+              const instance = asciifyInstances.get(el);
+              if (instance && !instance.hasPlayedOnce) instance.play();
+            });
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    document.querySelectorAll(".section").forEach((sec) => observer.observe(sec));
+  }
 }
 
 window.triggerSectionAsciify = function (sectionId) {

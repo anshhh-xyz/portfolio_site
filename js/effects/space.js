@@ -55,7 +55,6 @@
       const alpha = Math.max(0.04, Math.min(0.85, this.baseAlpha + twinkle));
       const radius = Math.max(0.3, this.baseRadius * (1 + twinkle * 0.4));
 
-      ctx.save();
       ctx.globalAlpha = alpha;
       ctx.fillStyle = this.color;
       ctx.beginPath();
@@ -75,8 +74,7 @@
         ctx.lineTo(px, py + spikeLen);
         ctx.stroke();
       }
-
-      ctx.restore();
+      ctx.globalAlpha = 1;
     }
   }
 
@@ -149,7 +147,7 @@
   ).matches;
 
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     width = window.innerWidth;
     height = window.innerHeight;
     spaceCanvas.width = width * dpr;
@@ -157,15 +155,18 @@
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.scale(dpr, dpr);
 
+    const isSmall = width < 600;
     const count = Math.floor((width * height) / 7500);
-    const starCount = Math.max(90, Math.min(170, count));
+    const starCount = isSmall
+      ? Math.max(35, Math.min(65, count))
+      : Math.max(80, Math.min(160, count));
 
     stars = [];
     for (let i = 0; i < starCount; i++) {
       stars.push(new Star());
     }
 
-    meteors = [new Meteor(), new Meteor()];
+    meteors = isSmall ? [new Meteor()] : [new Meteor(), new Meteor()];
 
     if (prefersReducedMotion) {
       ctx.clearRect(0, 0, width, height);

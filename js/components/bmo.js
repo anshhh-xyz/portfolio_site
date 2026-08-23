@@ -20,7 +20,7 @@
         powerPreference: 'high-performance'
       });
       renderer.setSize(width, height, false);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
       renderer.outputEncoding = THREE.sRGBEncoding;
     } catch (e) {
       return;
