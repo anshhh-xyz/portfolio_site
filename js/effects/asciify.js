@@ -17,6 +17,14 @@ class AsciifyEffect {
   }
 
   play() {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) {
+      this.el.innerText = this.originalText;
+      return;
+    }
+
     if (this.isRunning) {
       cancelAnimationFrame(this.frameId);
     }

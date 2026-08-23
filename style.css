@@ -1286,28 +1286,25 @@ main {
     scroll-snap-align: center;
   }
 
-  .rail a {
+  .rail ol a {
     white-space: nowrap;
     font-size: 0.78rem;
-    /* Real tap target (44px is the usual minimum) instead of text-only
-       hitbox, and a pill background on the active item so "where am I"
-       reads at a glance instead of relying on a subtle color shift. */
     padding: 0.6rem 0.55rem;
     min-height: 44px;
     border-radius: 8px;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
-  .rail a span {
+  .rail ol a span {
     display: none;
   }
 
-  .rail a.active {
+  .rail ol a.active {
     color: var(--text);
     background: rgba(91, 140, 255, 0.14);
   }
 
-  .rail a:active {
+  .rail ol a:active {
     background: rgba(91, 140, 255, 0.22);
   }
 

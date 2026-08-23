@@ -52,7 +52,8 @@
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      const targetId = link.dataset.target;
+      const targetId =
+        link.dataset.target || (link.getAttribute("href") || "").replace("#", "");
       const targetSec = document.getElementById(targetId);
       if (targetSec) {
         if (typeof window.smoothScrollTo === "function") {

@@ -148,6 +148,10 @@
   let stars = [];
   let meteors = [];
 
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = window.innerWidth;
@@ -166,20 +170,42 @@
     }
 
     meteors = [new Meteor(), new Meteor()];
+
+    if (prefersReducedMotion) {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < stars.length; i++) {
+        stars[i].draw(ctx, 0, 0);
+      }
+    }
   }
 
-  window.addEventListener("resize", resize, { passive: true });
+  let resizeTimer = null;
+  window.addEventListener(
+    "resize",
+    () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    },
+    { passive: true }
+  );
   resize();
+
+  if (prefersReducedMotion) return;
 
   let targetOffsetX = 0;
   let targetOffsetY = 0;
   let currentOffsetX = 0;
   let currentOffsetY = 0;
+  let animFrameId = null;
 
-  window.addEventListener("mousemove", (e) => {
-    targetOffsetX = (e.clientX / width - 0.5) * 2;
-    targetOffsetY = (e.clientY / height - 0.5) * 2;
-  }, { passive: true });
+  window.addEventListener(
+    "mousemove",
+    (e) => {
+      targetOffsetX = (e.clientX / width - 0.5) * 2;
+      targetOffsetY = (e.clientY / height - 0.5) * 2;
+    },
+    { passive: true }
+  );
 
   function spaceLoop() {
     currentOffsetX += (targetOffsetX - currentOffsetX) * 0.04;
@@ -197,8 +223,29 @@
       meteors[j].draw(ctx);
     }
 
-    requestAnimationFrame(spaceLoop);
+    animFrameId = requestAnimationFrame(spaceLoop);
   }
 
-  spaceLoop();
+  function startLoop() {
+    if (!animFrameId) {
+      animFrameId = requestAnimationFrame(spaceLoop);
+    }
+  }
+
+  function stopLoop() {
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopLoop();
+    } else {
+      startLoop();
+    }
+  });
+
+  startLoop();
 })();

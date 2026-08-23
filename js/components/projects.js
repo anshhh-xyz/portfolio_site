@@ -176,7 +176,7 @@
 
     // Resize observer
     const ro = new ResizeObserver(() => {
-      initPixelGrid(width / 2, height / 2);
+      initPixelGrid();
     });
     ro.observe(card);
 

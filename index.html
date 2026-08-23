@@ -5,16 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Ansh — Portfolio</title>
-  <link rel="stylesheet" href="style.css?v=21" />
+  <meta name="description" content="Ansh Gupta — Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
+  <meta name="author" content="Ansh Gupta" />
+  <meta name="theme-color" content="#050608" />
+
+  <!-- Open Graph / Social Preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ansh Gupta — Portfolio" />
+  <meta property="og:description" content="Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
+  <meta property="og:url" content="https://anshhh.xyz" />
+
+  <!-- Terminal Style SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050608'/%3E%3Cpath d='M8 10l7 6-7 6M17 22h7' stroke='%2335d68f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="style.css?v=22" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 </head>
 
 <body>
@@ -35,7 +49,7 @@
 
   <!-- HUD-style top nav -->
   <nav class="rail" aria-label="Section navigation">
-    <a href="#hero" class="rail-brand" aria-label="Ansh Gupta, home">
+    <a href="#hero" class="rail-brand" data-target="hero" aria-label="Ansh Gupta, home">
       <span class="rail-brand-tag">
         <span class="rail-brand-name">Ansh_</span><span class="rail-brand-suffix">Portfolio</span><span
           class="rail-brand-hash">.py</span>
@@ -130,7 +144,7 @@
 
             npx hire_me()
           </a>
-          <a href="resume.pdf" class="hero-btn hero-btn-ghost" download>
+          <a href="https://docs.google.com/document/d/1RmjfyQZ4F3oxc9748PpGjR5RG1XT02scZHjWZ3BNQdw/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hero-btn hero-btn-ghost" title="View &amp; Download Resume (Google Docs)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
               stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3v12" />
@@ -174,7 +188,8 @@
             <div class="about-subblock">
               <h3 class="about-subheading"><span class="hash-tag">#</span> Key Achievements</h3>
               <ul class="about-achievements-list">
-                <li><span class="achieve-dot"></span><span><strong>Hackathon wins:</strong> still loading... ⚡</span>
+                <li><span class="achieve-dot"></span><span><strong>Core Focus:</strong> High-throughput ML pipelines &amp;
+                    real-time edge computer vision ⚡</span>
                 </li>
                 <li><span class="achieve-dot"></span><span>Academic Excellence: Maintaining <strong>8.9 CGPA</strong> at
                     MAIT</span></li>
@@ -237,13 +252,13 @@
 
         <div class="skills-subnav" role="tablist" aria-label="Skill categories">
           <button type="button" class="skills-tab active" data-category="languages" role="tab" aria-selected="true"
-            aria-controls="skills-panel">Languages</button>
+            aria-controls="skills-panel-0">Languages</button>
           <button type="button" class="skills-tab" data-category="aiml" role="tab" aria-selected="false"
-            aria-controls="skills-panel">AI/ML Frameworks</button>
+            aria-controls="skills-panel-0">AI/ML Frameworks</button>
           <button type="button" class="skills-tab" data-category="tools" role="tab" aria-selected="false"
-            aria-controls="skills-panel">Tools</button>
+            aria-controls="skills-panel-0">Tools</button>
           <button type="button" class="skills-tab" data-category="deployment" role="tab" aria-selected="false"
-            aria-controls="skills-panel">Deployment</button>
+            aria-controls="skills-panel-0">Deployment</button>
         </div>
         <div class="skills-sweep-container" id="skills-sweep-container">
           <canvas class="skills-sweep-canvas" id="skills-sweep-canvas" aria-hidden="true"></canvas>
@@ -287,7 +302,7 @@
                       </svg>
                     </a>
                     <a href="https://github.com/anshhh-xyz/DetectIQ#demo" class="project-icon-link" target="_blank"
-                      rel="noopener" aria-label="DetectIQ Live Demo" title="Live Demo">
+                      rel="noopener" aria-label="DetectIQ Architecture Documentation & Specs" title="Architecture & Specs">
                       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
@@ -344,7 +359,7 @@
                       </svg>
                     </a>
                     <a href="https://attendily.vercel.app" class="project-icon-link" target="_blank" rel="noopener"
-                      aria-label="Attendily Live Demo" title="Live Demo">
+                      aria-label="Attendily Live PWA & Deployment" title="Live PWA App">
                       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
@@ -353,22 +368,21 @@
                   </div>
                 </div>
                 <h3 class="project-title">Attendily</h3>
-                <p class="project-tagline">Attendance &amp; Schedule Forecasting Engine</p>
+                <p class="project-tagline">AI-Powered Proxy-Resistant Attendance PWA</p>
               </div>
 
               <!-- Brief (Revealed on Hover) -->
               <div class="project-brief">
                 <p class="project-desc">
-                  Offline-first Progressive Web App integrating Supabase Edge Functions with <strong>Gemini Flash
-                    OCR</strong> for instant timetable photo ingestion, backed by <code>pg_cron</code> workers for 5-min
-                  pre-class push alerts.
+                  Zero-install offline-capable PWA with <strong>Google Gemini</strong> multimodal timetable OCR, dual-mode
+                  smart overrides, and sub-100ms row-level security caching on Supabase.
                 </p>
               </div>
 
               <div class="project-stats-strip">
-                <span class="stat-pill"><span class="stat-num">100%</span> PWA</span>
-                <span class="stat-pill"><span class="stat-num">Gemini</span> OCR</span>
-                <span class="stat-pill"><span class="stat-num">pg_cron</span> Web Push</span>
+                <span class="stat-pill"><span class="stat-num">98.4%</span> Cache Hit</span>
+                <span class="stat-pill"><span class="stat-num">Offline</span> PWA</span>
+                <span class="stat-pill"><span class="stat-num">Row-Level</span> Security</span>
               </div>
 
               <div class="project-tags">
@@ -400,8 +414,8 @@
                           d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                       </svg>
                     </a>
-                    <a href="https://huggingface.co/datasets" class="project-icon-link" target="_blank" rel="noopener"
-                      aria-label="Lagom Dataset Demo" title="Dataset & Demo">
+                    <a href="https://github.com/anshhh-xyz/Lagom#pipeline" class="project-icon-link" target="_blank" rel="noopener"
+                      aria-label="Lagom Dataset Pipeline & Docs" title="Pipeline &amp; Docs">
                       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
@@ -457,8 +471,8 @@
                       </svg>
                     </a>
                     <a href="https://github.com/anshhh-xyz/AutoExpense#architecture" class="project-icon-link"
-                      target="_blank" rel="noopener" aria-label="AutoExpense Live Demo / Architecture"
-                      title="Live Demo / Specs">
+                      target="_blank" rel="noopener" aria-label="AutoExpense Architecture & Specs"
+                      title="Architecture &amp; Specs">
                       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
