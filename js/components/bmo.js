@@ -461,9 +461,16 @@
     }
     evaluateLoop();
   }
+  function scheduleInit() {
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(initBMO, { timeout: 200 });
+    } else {
+      requestAnimationFrame(initBMO);
+    }
+  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBMO);
+    document.addEventListener('DOMContentLoaded', scheduleInit);
   } else {
-    initBMO();
+    scheduleInit();
   }
 })();

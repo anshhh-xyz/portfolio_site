@@ -2163,6 +2163,16 @@ main {
   height: 10px;
   filter: drop-shadow(0 0 6px rgba(91, 140, 255, 0.55));
 }
+.hud-cursor-frame.is-locked {
+  background: rgba(91, 140, 255, 0.035);
+  border-radius: 8px;
+}
+.hud-cursor-frame.is-locked .corner {
+  border-color: var(--accent-green);
+  width: 7px;
+  height: 7px;
+  filter: drop-shadow(0 0 6px rgba(53, 214, 143, 0.7));
+}
 .hud-cursor-tag {
   position: absolute;
   top: 50%;
@@ -2178,8 +2188,11 @@ main {
   opacity: 0;
   transition: opacity 0.15s ease;
 }
-.hud-cursor-frame.is-hovering .hud-cursor-tag,
-.hud-cursor-frame.is-project .hud-cursor-tag {
+.hud-cursor-tag:not(:empty) {
+  opacity: 1;
+}
+.hud-cursor-frame.is-hovering .hud-cursor-tag:not(:empty),
+.hud-cursor-frame.is-project .hud-cursor-tag:not(:empty) {
   opacity: 1;
 }
 .hud-cursor-frame.is-clicking {

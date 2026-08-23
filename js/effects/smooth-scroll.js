@@ -5,9 +5,14 @@
 
   if (prefersReducedMotion) return;
 
+  const isTouchDevice =
+    "ontouchstart" in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia("(pointer: coarse)").matches;
+
   let lenisInstance = null;
 
-  if (typeof Lenis !== "undefined") {
+  if (!isTouchDevice && typeof Lenis !== "undefined") {
     lenisInstance = new Lenis({
       duration: 1.25,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -15,7 +20,7 @@
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.8,
+      touchMultiplier: 1.0,
       infinite: false,
     });
 
@@ -27,7 +32,7 @@
       gsap.ticker.add((time) => {
         lenisInstance.raf(time * 1000);
       });
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(500, 33);
     } else {
       function raf(time) {
         lenisInstance.raf(time);
@@ -48,9 +53,11 @@
           t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
       });
     } else {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+      const targetTop =
+        target.getBoundingClientRect().top + window.pageYOffset + offset;
+      window.scrollTo({
+        top: targetTop,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
       });
     }
   };
