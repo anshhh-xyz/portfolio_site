@@ -34,32 +34,14 @@ function initAnimations() {
         }
       });
 
-      // About Section: Story from Left, Terminal from Right
-      const aboutStory = document.querySelector(".about-story");
+      // About Section: Center Terminal Entry
       const aboutTerminal = document.querySelector("#about .about-terminal");
-      if (aboutStory) {
-        gsap.fromTo(
-          aboutStory,
-          { x: -offsetX, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: aboutStory,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
       if (aboutTerminal) {
         gsap.fromTo(
           aboutTerminal,
-          { x: offsetX, opacity: 0 },
+          { y: 35, opacity: 0 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
             duration: 0.85,
             ease: "power2.out",

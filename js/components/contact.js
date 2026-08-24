@@ -48,7 +48,7 @@
         const body = encodeURIComponent(
           `Hi Ansh,\n\n${msg}\n\n---\nSender: ${name}\nEmail: ${email}`
         );
-        const mailtoUrl = `mailto:anshhh.xyz@gmail.com?subject=${subject}&body=${body}`;
+        const mailtoUrl = `mailto:ansh.ash72@gmail.com?subject=${subject}&body=${body}`;
 
         window.location.href = mailtoUrl;
 
