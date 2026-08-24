@@ -23,7 +23,7 @@ const DEFAULTS = {
   spacing: 1,
   charset: "ascii",
   glyphs: [],
-  color: "#5b8cff",
+  color: "#FFFFFF",
   tint: 0.75,
   glow: 2,
   aberration: 5,

@@ -1,135 +1,106 @@
-const ASCII_GLYPHS = "01_#*+<>:[]/~%&!?$X^";
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-class AsciifyEffect {
-  constructor(element) {
-    this.el = element;
-    this.originalText = element.dataset.originalText || element.innerText.trim();
-    this.el.dataset.originalText = this.originalText;
-    this.frameId = null;
-    this.isRunning = false;
-    this.lastFlipTime = 0;
-    this.cachedGlyphs = [];
-    this.hasPlayedOnce = false;
+function runHackerEffect(element) {
+  if (!element) return;
+  const targetValue = element.dataset.value || element.dataset.originalText || element.innerText.trim();
+  element.dataset.value = targetValue;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  if (prefersReducedMotion) {
+    element.innerText = targetValue;
+    return;
   }
 
-  play() {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) {
-      this.el.innerText = this.originalText;
-      return;
-    }
+  // Prevent frantic re-triggering with a deliberate cooldown
+  const now = performance.now();
+  if (element._lastHackedTime && (now - element._lastHackedTime < 2500)) {
+    return;
+  }
+  element._lastHackedTime = now;
 
-    if (this.isRunning) {
-      cancelAnimationFrame(this.frameId);
-    }
-    this.isRunning = true;
-    this.el.classList.add("is-glitching");
+  let iteration = 0;
 
-    const text = this.originalText;
-    const length = text.length;
-    const duration = Math.min(Math.max(400, length * 18), 620);
-    const waveWidth = 3;
-    const startTime = performance.now();
-    this.lastFlipTime = 0;
-    this.cachedGlyphs = new Array(length).fill("");
+  if (element._hackerInterval) {
+    clearInterval(element._hackerInterval);
+  }
 
-    const frame = (now) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+  element.classList.add("is-glitching", "is-hacking");
 
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-      const resolvedHead = Math.floor(easedProgress * (length + waveWidth));
-      const lockedCount = Math.max(0, resolvedHead - waveWidth);
-
-      const shouldFlipGlyph = now - this.lastFlipTime > 45;
-      if (shouldFlipGlyph) {
-        this.lastFlipTime = now;
-        for (let i = lockedCount; i < Math.min(length, resolvedHead); i++) {
-          this.cachedGlyphs[i] =
-            ASCII_GLYPHS[Math.floor(Math.random() * ASCII_GLYPHS.length)];
+  element._hackerInterval = setInterval(() => {
+    element.innerText = element.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < iteration) {
+          return targetValue[index] || "";
         }
-      }
-
-      let result = "";
-      for (let i = 0; i < length; i++) {
-        const char = text[i];
-        if (char === " " || char === "\n") {
-          result += char;
-        } else if (i < lockedCount) {
-          result += char;
-        } else if (i < resolvedHead) {
-          result += this.cachedGlyphs[i] || ASCII_GLYPHS[0];
-        } else {
-          result += char;
+        if (targetValue[index] === " " || targetValue[index] === "\n") {
+          return targetValue[index];
         }
-      }
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join("");
 
-      this.el.innerText = result;
-
-      if (progress < 1) {
-        this.frameId = requestAnimationFrame(frame);
-      } else {
-        this.el.innerText = text;
-        this.el.classList.remove("is-glitching");
-        this.isRunning = false;
-        this.hasPlayedOnce = true;
-      }
-    };
-
-    this.frameId = requestAnimationFrame(frame);
-  }
-
-  reset() {
-    if (this.isRunning) {
-      cancelAnimationFrame(this.frameId);
+    if (iteration >= targetValue.length) {
+      clearInterval(element._hackerInterval);
+      element._hackerInterval = null;
+      element.innerText = targetValue;
+      element.classList.remove("is-glitching", "is-hacking");
+      element._hasPlayedOnce = true;
     }
-    this.el.innerText = this.originalText;
-    this.el.classList.remove("is-glitching");
-    this.isRunning = false;
-  }
+
+    iteration += 0.8;
+  }, 65);
 }
 
-const asciifyInstances = new Map();
-
 function initAsciify() {
-  const elements = document.querySelectorAll("[data-asciify]");
+  const elements = document.querySelectorAll("[data-asciify], [data-hacker-text], [data-value], h1");
   elements.forEach((el) => {
-    if (!asciifyInstances.has(el)) {
-      const effect = new AsciifyEffect(el);
-      asciifyInstances.set(el, effect);
-
-      el.addEventListener("mouseenter", () => effect.play());
+    if (!el.dataset.value) {
+      el.dataset.value = el.innerText.trim();
     }
+
+    el.onmouseover = (event) => {
+      runHackerEffect(event.currentTarget || event.target);
+    };
   });
 
+  // Auto-scramble Hero section headings on load and when entering hero
+  const heroElements = document.querySelectorAll("#hero h1, #hero .hero-role, #hero [data-asciify]");
+  
+  function triggerHeroHeadings() {
+    heroElements.forEach((el, index) => {
+      setTimeout(() => {
+        runHackerEffect(el);
+      }, 150 + index * 160);
+    });
+  }
+
+  // Initial load trigger
+  triggerHeroHeadings();
+
+  // Trigger when scrolling into hero
   if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const asciifyEls = entry.target.querySelectorAll("[data-asciify]");
-            asciifyEls.forEach((el) => {
-              const instance = asciifyInstances.get(el);
-              if (instance && !instance.hasPlayedOnce) instance.play();
-            });
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-    );
-    document.querySelectorAll(".section").forEach((sec) => observer.observe(sec));
+    const heroSec = document.getElementById("hero");
+    if (heroSec) {
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              triggerHeroHeadings();
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      heroObserver.observe(heroSec);
+    }
   }
 }
 
 window.triggerSectionAsciify = function (sectionId) {
-  const sec = document.getElementById(sectionId);
-  if (!sec) return;
-  const asciifyEls = sec.querySelectorAll("[data-asciify]");
-  asciifyEls.forEach((el) => {
-    const instance = asciifyInstances.get(el);
-    if (instance) instance.play();
-  });
+  // Kept for backward compatibility if explicitly needed, but no longer auto-fires on scroll
 };
+
+window.triggerSectionHackerText = window.triggerSectionAsciify;

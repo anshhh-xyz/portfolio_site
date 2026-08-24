@@ -7,42 +7,26 @@ function initAnimations() {
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
+      const isMobile = window.innerWidth <= 768;
+      const offsetX = isMobile ? 22 : 36;
+
+      // Section Headers: Slide in from Left
       const sections = document.querySelectorAll(".section:not(#hero)");
       sections.forEach((sec) => {
-        const inner = sec.querySelector(".section-inner");
-        if (!inner) return;
-
-        gsap.fromTo(
-          inner,
-          { opacity: 0.35, y: 24, scale: 0.99, transformOrigin: "center bottom" },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.75,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: sec,
-              start: "top 86%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-
-        const headers = inner.querySelectorAll(".section-tag, h2, .lede");
+        const headers = sec.querySelectorAll(".section-tag, h2, .lede");
         if (headers.length > 0) {
           gsap.fromTo(
             headers,
-            { y: 16, opacity: 0 },
+            { x: -offsetX, opacity: 0 },
             {
-              y: 0,
+              x: 0,
               opacity: 1,
-              duration: 0.6,
-              stagger: 0.06,
+              duration: 0.75,
+              stagger: 0.08,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: sec,
-                start: "top 84%",
+                start: "top 85%",
                 toggleActions: "play none none none",
               },
             }
@@ -50,28 +34,234 @@ function initAnimations() {
         }
       });
 
-      const cards = document.querySelectorAll(
-        ".project-card, .about-terminal, .about-edu-card, .experience-card, .bento-card, .skills-card-grid"
-      );
-
-      cards.forEach((card) => {
+      // About Section: Story from Left, Terminal from Right
+      const aboutStory = document.querySelector(".about-story");
+      const aboutTerminal = document.querySelector("#about .about-terminal");
+      if (aboutStory) {
         gsap.fromTo(
-          card,
-          { y: 20, scale: 0.99, opacity: 0.4, transformOrigin: "center bottom" },
+          aboutStory,
+          { x: -offsetX, opacity: 0 },
           {
-            y: 0,
-            scale: 1,
+            x: 0,
             opacity: 1,
-            duration: 0.7,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: card,
+              trigger: aboutStory,
               start: "top 88%",
               toggleActions: "play none none none",
             },
           }
         );
+      }
+      if (aboutTerminal) {
+        gsap.fromTo(
+          aboutTerminal,
+          { x: offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: aboutTerminal,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Tech Stack: Subnav from Left, Grid from Right
+      const skillsSubnav = document.querySelector(".skills-subnav");
+      const skillsGrid = document.querySelector(".skills-card-grid");
+      if (skillsSubnav) {
+        gsap.fromTo(
+          skillsSubnav,
+          { x: -offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: skillsSubnav,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+      if (skillsGrid) {
+        gsap.fromTo(
+          skillsGrid,
+          { x: offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: skillsGrid,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Projects: Alternating Side Entry (Left & Right)
+      const projectCards = document.querySelectorAll(".project-card");
+      projectCards.forEach((card, index) => {
+        const sideDir = index % 2 === 0 ? -offsetX : offsetX;
+        gsap.fromTo(
+          card,
+          { x: sideDir, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
       });
+
+      const projectsCta = document.querySelector(".projects-cta-wrap");
+      if (projectsCta) {
+        gsap.fromTo(
+          projectsCta,
+          { x: -offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: projectsCta,
+              start: "top 92%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Experience: Year Wave from Left, Experience Card from Right
+      const yearNav = document.querySelector(".year-nav-container");
+      const expWrap = document.querySelector(".experience-single-wrap");
+      if (yearNav) {
+        gsap.fromTo(
+          yearNav,
+          { x: -offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: yearNav,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+      if (expWrap) {
+        gsap.fromTo(
+          expWrap,
+          { x: offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: expWrap,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      // Contact: Terminal from Left, Bento Tiles from Right, Status from Left
+      const bentoTerminal = document.querySelector(".bento-terminal");
+      const bentoMail = document.querySelector(".bento-mail");
+      const bentoGithub = document.querySelector(".bento-github");
+      const bentoStatus = document.querySelector(".bento-status");
+
+      if (bentoTerminal) {
+        gsap.fromTo(
+          bentoTerminal,
+          { x: -offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: bentoTerminal,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+      if (bentoMail) {
+        gsap.fromTo(
+          bentoMail,
+          { x: offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: bentoMail,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+      if (bentoGithub) {
+        gsap.fromTo(
+          bentoGithub,
+          { x: offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.85,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: bentoGithub,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+      if (bentoStatus) {
+        gsap.fromTo(
+          bentoStatus,
+          { x: -offsetX, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: bentoStatus,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
     }
   };
 

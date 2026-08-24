@@ -7,3 +7,4 @@ Thumbs.db
 *.gltf
 *.glb
 audit-reports/
+*.backup.js

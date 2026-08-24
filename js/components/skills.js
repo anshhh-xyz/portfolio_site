@@ -44,8 +44,8 @@
         turbulence: 0.5,
         trail: 0.75,
         scale: 2,
-        color: "#5b8cff",
-        background: "#050608",
+        color: "#FFFFFF",
+        background: "#080808",
         glow: 2,
         aberration: 5,
       });

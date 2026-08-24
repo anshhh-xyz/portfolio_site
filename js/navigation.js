@@ -59,9 +59,6 @@
             behavior: prefersReducedMotion ? "auto" : "smooth",
           });
         }
-        if (typeof window.triggerSectionAsciify === "function") {
-          setTimeout(() => window.triggerSectionAsciify(targetId), 250);
-        }
       }
     });
   });
