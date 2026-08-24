@@ -8,12 +8,12 @@
     content="Ansh Gupta — Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
   <meta name="author" content="Ansh Gupta" />
   <meta name="theme-color" content="#050608" />
-  <link rel="canonical" href="https://anshhh.xyz/" />
+  <link rel="canonical" href="https://anshguptax.vercel.app/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Ansh Gupta — Portfolio" />
   <meta property="og:description"
     content="Software Engineer & ML Practitioner specializing in high-throughput systems, computer vision, and reactive web architecture." />
-  <meta property="og:url" content="https://anshhh.xyz" />
+  <meta property="og:url" content="https://anshguptax.vercel.app/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ansh Gupta — Portfolio" />
   <meta name="twitter:description"
@@ -24,7 +24,7 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Ansh Gupta",
-    "url": "https://anshhh.xyz",
+    "url": "https://anshguptax.vercel.app/",
     "jobTitle": "Software Engineer",
     "sameAs": [
       "https://github.com/anshhh-xyz"
@@ -41,21 +41,16 @@
   </script>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23050608'/%3E%3Cpath d='M8 10l7 6-7 6M17 22h7' stroke='%2335d68f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
-  <style>html{background:#050608;color:#eef0f4}</style>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2409-1@1.0/DepartureMono-Regular.woff2" as="font"
     type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="style.css?v=40" />
-  <link rel="preload"
+  <link rel="stylesheet" href="style.css?v=41" />
+  <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-    as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
-  </noscript>
+    rel="stylesheet" />
 </head>
 <body>
   <noscript>
@@ -150,10 +145,10 @@
     <section id="hero" class="section hero-section">
       <div class="section-inner hero-inner">
         <div class="hero-content">
-          <p class="eyebrow">·I make stuff for fun ·</p>
-          <h1>Ansh Gupta</h1>
-          <p class="hero-role">Software Engineer</p>
-          <p class="lede">Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how they actually work.</p>
+          <p class="eyebrow" data-asciify>·I make stuff for fun ·</p>
+          <h1 data-asciify>Ansh Gupta</h1>
+          <p class="hero-role" data-asciify>Software Engineer</p>
+          <p class="lede" data-asciify>Full-stack, ML/CV, and AI tooling. I build things end to end and figure out how they actually work.</p>
           <div class="hero-actions">
             <a href="#contact" class="hero-btn hero-btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -745,6 +740,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script defer src="js/effects/smooth-scroll.js"></script>
   <script defer src="js/data/skills-data.js"></script>
   <script defer src="js/effects/cursor.js"></script>
@@ -755,19 +751,8 @@
   <script defer src="js/components/projects.js"></script>
   <script defer src="js/components/experience.js"></script>
   <script defer src="js/components/contact.js"></script>
+  <script defer src="js/components/bmo.js"></script>
   <script defer src="js/navigation.js"></script>
   <script defer src="js/main.js"></script>
-  <script>
-    window.addEventListener('load', function () {
-      var s1 = document.createElement('script');
-      s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-      s1.onload = function () {
-        var s2 = document.createElement('script');
-        s2.src = 'js/components/bmo.js';
-        document.body.appendChild(s2);
-      };
-      document.body.appendChild(s1);
-    });
-  </script>
 </body>
 </html>
