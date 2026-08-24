@@ -8,6 +8,14 @@
       navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches;
 
+    function deactivateAllCards(exceptCard = null) {
+      cards.forEach((c) => {
+        if (c !== exceptCard && c._pixelController) {
+          c._pixelController.deactivate();
+        }
+      });
+    }
+
     cards.forEach((card) => {
       const canvas = card.querySelector(".project-pixel-canvas");
       if (!canvas) return;
@@ -176,6 +184,7 @@
         } else {
           if (progress === 0) {
             ctx.clearRect(0, 0, width, height);
+            card.classList.remove("is-pixel-active");
           }
           animReq = null;
         }
@@ -187,6 +196,24 @@
           animReq = requestAnimationFrame(renderLoop);
         }
       }
+
+      // Controller interface for this card
+      card._pixelController = {
+        activate: (originX, originY) => {
+          isHovered = true;
+          targetProgress = 1.0;
+          updateOriginDelays(originX, originY);
+          startAnimation();
+        },
+        deactivate: () => {
+          isHovered = false;
+          targetProgress = 0.0;
+          card.classList.remove("is-pixel-active");
+          updateOriginDelays(width / 2, height / 2);
+          startAnimation();
+        },
+        isActive: () => targetProgress > 0.5 || card.classList.contains("is-pixel-active")
+      };
 
       const ro = new ResizeObserver(() => {
         syncCanvasSize();
@@ -200,20 +227,11 @@
           const rect = card.getBoundingClientRect();
           const mouseX = e.clientX - rect.left;
           const mouseY = e.clientY - rect.top;
-          isHovered = true;
-          targetProgress = 1.0;
-          updateOriginDelays(mouseX, mouseY);
-          startAnimation();
+          card._pixelController.activate(mouseX, mouseY);
         });
 
         card.addEventListener("mouseleave", (e) => {
-          const rect = card.getBoundingClientRect();
-          const leaveX = e.clientX - rect.left;
-          const leaveY = e.clientY - rect.top;
-          isHovered = false;
-          targetProgress = 0.0;
-          updateOriginDelays(leaveX, leaveY);
-          startAnimation();
+          card._pixelController.deactivate();
         });
       }
 
@@ -222,56 +240,33 @@
           return;
         }
 
-        if (isTouchDevice) {
-          const wasActive = card.classList.contains("is-pixel-active");
+        const rect = card.getBoundingClientRect();
+        const clickX = e.clientX ? e.clientX - rect.left : rect.width / 2;
+        const clickY = e.clientY ? e.clientY - rect.top : rect.height / 2;
 
-          cards.forEach((c) => {
-            if (c !== card) {
-              c.classList.remove("is-pixel-active");
-            }
-          });
-
-          if (wasActive) {
-            isHovered = false;
-            targetProgress = 0.0;
-            updateOriginDelays(width / 2, height / 2);
-            startAnimation();
-          } else {
-            isHovered = true;
-            targetProgress = 1.0;
-            const rect = card.getBoundingClientRect();
-            const mouseX = rect.width / 2;
-            const mouseY = rect.height / 2;
-            updateOriginDelays(mouseX, mouseY);
-            startAnimation();
-          }
+        if (card._pixelController.isActive()) {
+          card._pixelController.deactivate();
+        } else {
+          deactivateAllCards(card);
+          card._pixelController.activate(clickX, clickY);
         }
       });
 
       card.addEventListener("focus", () => {
-        isHovered = true;
-        targetProgress = 1.0;
-        updateOriginDelays(width / 2, height / 2);
-        startAnimation();
+        deactivateAllCards(card);
+        card._pixelController.activate(width / 2, height / 2);
       });
 
       card.addEventListener("blur", () => {
-        isHovered = false;
-        targetProgress = 0.0;
-        updateOriginDelays(width / 2, height / 2);
-        startAnimation();
+        card._pixelController.deactivate();
       });
     });
 
-    if (isTouchDevice) {
-      document.addEventListener("click", (e) => {
-        if (!e.target.closest(".project-card")) {
-          cards.forEach((card) => {
-            card.classList.remove("is-pixel-active");
-          });
-        }
-      });
-    }
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".project-card")) {
+        deactivateAllCards();
+      }
+    });
   }
 
   if ('IntersectionObserver' in window) {

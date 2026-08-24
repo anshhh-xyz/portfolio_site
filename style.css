@@ -2054,13 +2054,11 @@ main {
 .pixel-loader-fill {
   height: 100%;
   border-radius: 1px;
-  background: repeating-linear-gradient(
-    90deg,
-    #FFFFFF 0px,
-    #FFFFFF 9px,
-    transparent 9px,
-    transparent 12px
-  );
+  background: repeating-linear-gradient(90deg,
+      #FFFFFF 0px,
+      #FFFFFF 9px,
+      transparent 9px,
+      transparent 12px);
   image-rendering: pixelated;
 }
 
@@ -2626,15 +2624,16 @@ main {
   line-height: 1.35;
 }
 
-.bento-social-icons.grid-2x2 {
+.bento-social-icons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.65rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.55rem;
   width: 100%;
   margin-top: 0;
+  box-sizing: border-box;
 }
 
-.bento-social-icons.grid-2x2 .social-icon-btn {
+.bento-social-icons .social-icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2648,9 +2647,10 @@ main {
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
 }
 
-.bento-social-icons.grid-2x2 .social-icon-btn:hover {
+.bento-social-icons .social-icon-btn:hover {
   background: rgba(18, 64, 110, 0.85);
   border-color: var(--accent-warm);
   color: #FFFFFF;
@@ -2801,9 +2801,15 @@ main {
 }
 
 @media (max-width: 992px) {
+  .contact-bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
   .bento-terminal.win-terminal,
   .bento-right-col {
-    grid-column: span 12;
+    grid-column: span 1;
+    width: 100%;
   }
 }
 
@@ -2855,6 +2861,13 @@ main {
     justify-content: center;
     padding: 0.8rem 1.25rem;
     font-size: 0.82rem;
+  }
+
+  .bmo-sitter {
+    width: 80px;
+    height: 87px;
+    top: -68px;
+    right: 18px;
   }
 
   .section-header,
@@ -2917,7 +2930,7 @@ main {
     gap: 0.85rem;
   }
 
-  /* Contact Section Mobile Optimizations */
+  /* Contact Section Mobile Fixes */
   .contact-container {
     width: 100%;
     max-width: 100%;
@@ -2925,31 +2938,40 @@ main {
 
   .contact-bento-grid {
     grid-template-columns: 1fr;
-    gap: 1.35rem;
+    gap: 1.15rem;
+    width: 100%;
   }
 
   .bento-card {
-    padding: 1.4rem 1.25rem;
+    padding: 1.25rem 1.15rem;
     border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .bento-terminal {
     grid-column: span 1;
     min-height: auto;
+    width: 100%;
   }
 
   .terminal-header.win-titlebar {
-    min-height: 34px;
+    min-height: 36px;
+    padding: 0.35rem 0.65rem;
   }
 
   .win-tabs {
-    max-width: calc(100% - 65px);
+    flex: 1;
+    min-width: 0;
+    max-width: calc(100% - 60px);
   }
 
   .win-tab {
-    max-width: 180px;
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
+    flex: 1;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.72rem;
   }
 
   .win-tab-title {
@@ -2974,6 +2996,8 @@ main {
     font-size: 16px !important;
     /* Prevents unwanted iOS auto-zoom */
     padding: 0.65rem 0.85rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .terminal-textarea {
@@ -2981,13 +3005,13 @@ main {
   }
 
   .terminal-submit-btn {
-    align-self: flex-start;
     width: 100%;
-    max-width: 280px;
+    max-width: 100%;
     justify-content: center;
     padding: 0.75rem 1.15rem;
     font-size: 0.84rem;
     min-height: 44px;
+    box-sizing: border-box;
   }
 
   .bento-right-col {
@@ -2999,6 +3023,7 @@ main {
   .bento-mail {
     width: 100%;
     padding: 1.25rem 1.15rem;
+    box-sizing: border-box;
   }
 
   .bento-email-readout {
@@ -3008,6 +3033,8 @@ main {
     gap: 0.5rem;
     padding: 0.45rem 0.75rem;
     min-height: 42px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .bento-email-readout .email-text {
@@ -3026,30 +3053,35 @@ main {
 
   .bento-action-btn {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
     padding: 0.7rem 1.15rem;
     font-size: 0.82rem;
     min-height: 44px;
+    box-sizing: border-box;
   }
 
   .bento-status-strip {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.55rem;
+    width: 100%;
   }
 
   .bento-status-info {
     width: 100%;
   }
 
-  .bento-social-icons.grid-2x2 {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.65rem;
+  .bento-social-icons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.45rem;
     width: 100%;
+    box-sizing: border-box;
   }
 
-  .bento-social-icons.grid-2x2 .social-icon-btn {
-    height: 48px;
+  .bento-social-icons .social-icon-btn {
+    height: 46px;
   }
 
   /* Future Timeline Pixel Loader Mobile */
@@ -3073,8 +3105,15 @@ main {
     padding: 5rem 1rem 3rem;
   }
 
+  .bmo-sitter {
+    width: 72px;
+    height: 78px;
+    top: -61px;
+    right: 14px;
+  }
+
   .bento-card {
-    padding: 1.15rem 0.95rem;
+    padding: 1.1rem 0.95rem;
     border-radius: 12px;
   }
 
@@ -3091,6 +3130,20 @@ main {
     max-width: calc(100% - 65px);
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .bento-social-icons {
+    gap: 0.35rem;
+  }
+
+  .bento-social-icons .social-icon-btn {
+    height: 42px;
+    border-radius: 8px;
+  }
+
+  .bento-social-icons .social-icon-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
   .year-nav-container {
@@ -3116,6 +3169,22 @@ main {
 
   .pixel-loader-header {
     font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .bento-social-icons {
+    gap: 0.25rem;
+  }
+
+  .bento-social-icons .social-icon-btn {
+    height: 38px;
+    border-radius: 7px;
+  }
+
+  .bento-social-icons .social-icon-btn svg {
+    width: 16px;
+    height: 16px;
   }
 }
 
