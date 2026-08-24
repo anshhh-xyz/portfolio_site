@@ -135,10 +135,13 @@ main {
   max-width: 100%;
   min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 clamp(1.5rem, 4vw, 4rem);
+  box-sizing: border-box;
+  position: relative;
 }
 
 .section:last-of-type {
@@ -163,6 +166,7 @@ main {
   text-align: center;
   margin: 0 auto;
   pointer-events: auto;
+  transform: translateY(-3.5vh);
 }
 
 .hero-content {
@@ -2824,8 +2828,18 @@ main {
   }
 
   #hero {
-    min-height: 85svh;
-    padding: clamp(5.5rem, 14vh, 7.5rem) 1.25rem clamp(3.5rem, 8vh, 4.5rem);
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(3.5rem, 8vh, 4.5rem) 1.25rem 2.25rem;
+    box-sizing: border-box;
+  }
+
+  #hero .section-inner.hero-inner {
+    transform: translateY(-2vh);
   }
 
   .hero-content {
@@ -3102,7 +3116,18 @@ main {
   }
 
   #hero {
-    padding: 5rem 1rem 3rem;
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3.5rem 1rem 2rem;
+    box-sizing: border-box;
+  }
+
+  #hero .section-inner.hero-inner {
+    transform: translateY(-1.5vh);
   }
 
   .bmo-sitter {
