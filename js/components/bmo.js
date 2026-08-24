@@ -471,14 +471,14 @@
   }
   function scheduleInit() {
     if (typeof requestIdleCallback === 'function') {
-      requestIdleCallback(initBMO, { timeout: 200 });
+      requestIdleCallback(initBMO, { timeout: 450 });
     } else {
-      requestAnimationFrame(initBMO);
+      setTimeout(initBMO, 150);
     }
   }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleInit);
+    document.addEventListener('DOMContentLoaded', () => setTimeout(scheduleInit, 80));
   } else {
-    scheduleInit();
+    setTimeout(scheduleInit, 80);
   }
 })();

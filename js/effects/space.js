@@ -255,8 +255,8 @@
   });
 
   if (typeof requestIdleCallback === "function") {
-    requestIdleCallback(() => startLoop(), { timeout: 250 });
+    requestIdleCallback(() => startLoop(), { timeout: 350 });
   } else {
-    setTimeout(startLoop, 40);
+    setTimeout(startLoop, 100);
   }
 })();
