@@ -214,30 +214,99 @@
       </div>
     </section>
     <section id="skills" class="section">
-      <div class="section-inner">
+      <div class="section-inner techstack-inner">
         <div class="section-header">
           <p class="section-tag">// 02. stack</p>
           <h2 data-value="class TechStack:" data-asciify>class TechStack:</h2>
         </div>
-        <div class="skills-subnav" role="tablist" aria-label="Skill categories">
-          <button type="button" class="skills-tab active" id="tab-languages" data-category="languages" role="tab"
-            aria-selected="true" aria-controls="skills-panel-0">Languages</button>
-          <button type="button" class="skills-tab" id="tab-aiml" data-category="aiml" role="tab" aria-selected="false"
-            aria-controls="skills-panel-0">AI/ML Frameworks</button>
-          <button type="button" class="skills-tab" id="tab-tools" data-category="tools" role="tab" aria-selected="false"
-            aria-controls="skills-panel-0">Tools</button>
-          <button type="button" class="skills-tab" id="tab-deployment" data-category="deployment" role="tab"
-            aria-selected="false" aria-controls="skills-panel-0">Deployment</button>
-        </div>
-        <div class="skills-sweep-container" id="skills-sweep-container">
-          <canvas class="skills-sweep-canvas" id="skills-sweep-canvas" aria-hidden="true"></canvas>
-          <div class="skills-slot is-active" id="skills-slot-0">
-            <canvas class="skills-slot-source" style="display: none;"></canvas>
-            <div class="skills-panel" id="skills-panel-0" role="tabpanel" aria-labelledby="tab-languages"></div>
+        <div class="techstack-grid">
+          <div class="techstack-card" tabindex="0" aria-label="TensorFlow">
+            <div class="techstack-icon">
+              <img src="assets/icons/tensorflow.svg" alt="TensorFlow" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">TensorFlow</span>
+            </div>
           </div>
-          <div class="skills-slot" id="skills-slot-1">
-            <canvas class="skills-slot-source" style="display: none;"></canvas>
-            <div class="skills-panel" id="skills-panel-1" role="tabpanel" aria-labelledby="tab-languages"></div>
+          <div class="techstack-card" tabindex="0" aria-label="Python">
+            <div class="techstack-icon">
+              <img src="assets/icons/python.svg" alt="Python" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">Python</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="C++">
+            <div class="techstack-icon">
+              <img src="assets/icons/cpp.svg" alt="C++" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">C++</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="JavaScript">
+            <div class="techstack-icon">
+              <img src="assets/icons/javascript.svg" alt="JavaScript" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">JavaScript</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="Git">
+            <div class="techstack-icon">
+              <img src="assets/icons/git.svg" alt="Git" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">Git</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="Supabase">
+            <div class="techstack-icon">
+              <img src="assets/icons/supabase.svg" alt="Supabase" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">Supabase</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="HTML5">
+            <div class="techstack-icon">
+              <img src="assets/icons/html.svg" alt="HTML5" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">HTML5</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="Scikit-Learn">
+            <div class="techstack-icon">
+              <img src="assets/icons/scikitlearn.svg" alt="Scikit-Learn" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">Scikit-Learn</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="CSS3">
+            <div class="techstack-icon">
+              <img src="assets/icons/css.svg" alt="CSS3" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">CSS3</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="SQL">
+            <div class="techstack-icon">
+              <img src="assets/icons/sql.svg" alt="SQL" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">SQL</span>
+            </div>
+          </div>
+          <div class="techstack-card" tabindex="0" aria-label="Vercel">
+            <div class="techstack-icon">
+              <img src="assets/icons/vercel.svg" alt="Vercel" width="38" height="38" loading="lazy">
+            </div>
+            <div class="techstack-overlay">
+              <span class="techstack-name">Vercel</span>
+            </div>
           </div>
         </div>
       </div>
@@ -285,11 +354,6 @@
                   Time-to-Collision estimation.
                 </p>
               </div>
-              <div class="project-stats-strip">
-                <span class="stat-pill"><span class="stat-num">~30 FPS</span> Realtime</span>
-                <span class="stat-pill"><span class="stat-num">85</span> Classes</span>
-                <span class="stat-pill"><span class="stat-num">IPM</span> TTC Risk</span>
-              </div>
               <div class="project-tags">
                 <span class="project-tag">Python</span>
                 <span class="project-tag">PyTorch</span>
@@ -334,11 +398,6 @@
                   smart overrides, and sub-100ms row-level security caching on Supabase.
                 </p>
               </div>
-              <div class="project-stats-strip">
-                <span class="stat-pill"><span class="stat-num">98.4%</span> Cache Hit</span>
-                <span class="stat-pill"><span class="stat-num">Offline</span> PWA</span>
-                <span class="stat-pill"><span class="stat-num">Row-Level</span> Security</span>
-              </div>
               <div class="project-tags">
                 <span class="project-tag">Vanilla JS</span>
                 <span class="project-tag">Supabase</span>
@@ -354,7 +413,7 @@
               <div class="project-card-top">
                 <div class="project-meta-row">
                   <div class="project-meta-left">
-                    <span class="project-cat">// 03 · DISTRIBUTED NLP</span>
+                    <span class="project-cat">// 03 · LLM FINE-TUNING &amp; NLP</span>
                   </div>
                   <div class="project-links">
                     <a href="https://github.com/anshhh-xyz/lagom-humanizer2.0" class="project-icon-link" target="_blank"
@@ -375,25 +434,21 @@
                   </div>
                 </div>
                 <h3 class="project-title">Lagom</h3>
-                <p class="project-tagline">High-Throughput AI Text Normalization Pipeline</p>
+                <p class="project-tagline">API Data Collection &amp; Qwen 2.5 7B Fine-Tuning</p>
               </div>
               <div class="project-brief">
                 <p class="project-desc">
-                  Parallelized synthetic data pipeline orchestrating a 5-worker thread pool with dynamic rate-sleep
-                  queues and checkpoint buffers to curate a 23MB+ paired dataset for fine-tuning open-source LLMs.
+                  Engineered an automated data collection pipeline via LLM APIs to curate paired corpora, fine-tuning
+                  <strong>Qwen 2.5 7B</strong> using <strong>4-bit quantization (QLoRA)</strong> across specialized
+                  text-humanizing categories to eliminate AI syntactic artifacts.
                 </p>
-              </div>
-              <div class="project-stats-strip">
-                <span class="stat-pill"><span class="stat-num">23 MB+</span> Corpus</span>
-                <span class="stat-pill"><span class="stat-num">5x</span> Thread Pool</span>
-                <span class="stat-pill"><span class="stat-num">Zero-Loss</span> Buffers</span>
               </div>
               <div class="project-tags">
                 <span class="project-tag">Python</span>
-                <span class="project-tag">Gemini API</span>
-                <span class="project-tag">Pandas</span>
-                <span class="project-tag">ThreadPoolExecutor</span>
-                <span class="project-tag">Regex NLP</span>
+                <span class="project-tag">Qwen 2.5 7B</span>
+                <span class="project-tag">QLoRA 4-bit</span>
+                <span class="project-tag">HuggingFace</span>
+                <span class="project-tag">PyTorch</span>
               </div>
             </div>
           </article>
@@ -432,11 +487,6 @@
                   alerts via Tasker webhooks, parses debit/credit amounts with regex logic, and streams into
                   date-partitioned Google Sheets.
                 </p>
-              </div>
-              <div class="project-stats-strip">
-                <span class="stat-pill"><span class="stat-num">&lt; 150ms</span> Latency</span>
-                <span class="stat-pill"><span class="stat-num">YYYY-MM</span> Partition</span>
-                <span class="stat-pill"><span class="stat-num">Google</span> Cloud IAM</span>
               </div>
               <div class="project-tags">
                 <span class="project-tag">Node.js</span>
@@ -710,11 +760,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script defer src="js/effects/smooth-scroll.js"></script>
-  <script defer src="js/data/skills-data.js"></script>
   <script defer src="js/effects/space.js"></script>
   <script defer src="js/effects/asciify.js"></script>
-  <script defer src="js/effects/ascii-sweep.js"></script>
-  <script defer src="js/components/skills.js"></script>
   <script defer src="js/components/projects.js"></script>
   <script defer src="js/components/experience.js"></script>
   <script defer src="js/components/contact.js"></script>

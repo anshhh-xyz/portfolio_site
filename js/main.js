@@ -54,38 +54,22 @@ function initAnimations() {
         );
       }
 
-      // Tech Stack: Subnav from Left, Grid from Right
-      const skillsSubnav = document.querySelector(".skills-subnav");
-      const skillsGrid = document.querySelector(".skills-card-grid");
-      if (skillsSubnav) {
+      // Tech Stack: Techstack Card Grid Stagger
+      const techstackCards = document.querySelectorAll(".techstack-card");
+      if (techstackCards.length > 0) {
         gsap.fromTo(
-          skillsSubnav,
-          { x: -offsetX, opacity: 0 },
+          techstackCards,
+          { y: 22, opacity: 0, scale: 0.95 },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
-            duration: 0.7,
+            scale: 1,
+            duration: 0.55,
+            stagger: 0.035,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: skillsSubnav,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
-      if (skillsGrid) {
-        gsap.fromTo(
-          skillsGrid,
-          { x: offsetX, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: skillsGrid,
-              start: "top 88%",
+              trigger: "#skills",
+              start: "top 85%",
               toggleActions: "play none none none",
             },
           }
