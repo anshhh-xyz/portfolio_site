@@ -30,7 +30,7 @@
       this.y = this.originY;
       this.vx = 0;
       this.vy = 0;
-      
+
       const rand = Math.random();
       if (rand < 0.55) {
         // Deep background layer (small, subtle)
