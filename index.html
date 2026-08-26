@@ -70,7 +70,13 @@
           class="rail-brand-hash">.py</span>
       </span>
     </a>
-    <ol>
+    <button class="rail-mobile-toggle" id="rail-mobile-toggle" type="button" aria-expanded="false"
+      aria-label="Toggle navigation menu" aria-controls="rail-nav-menu">
+      <span class="rail-toggle-bar"></span>
+      <span class="rail-toggle-bar"></span>
+    </button>
+    <div class="rail-mobile-backdrop" id="rail-mobile-backdrop" aria-hidden="true"></div>
+    <ol id="rail-nav-menu" class="rail-nav-list">
       <li>
         <a href="#hero" data-target="hero" class="active">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"

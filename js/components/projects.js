@@ -10,8 +10,13 @@
 
     function deactivateAllCards(exceptCard = null) {
       cards.forEach((c) => {
-        if (c !== exceptCard && c._pixelController) {
-          c._pixelController.deactivate();
+        if (c !== exceptCard) {
+          c.classList.remove("is-pixel-active");
+          c.classList.remove("is-expanded");
+          c.blur();
+          if (c._pixelController) {
+            c._pixelController.deactivate();
+          }
         }
       });
     }
@@ -34,17 +39,16 @@
       let lastTime = performance.now();
 
       const PIXEL_SIZE = 16;
-      const DURATION = 340;
+      const DURATION = 320;
 
       const FLASH_COLORS = [
-        "#FFFFFF",
-        "#F5F5F5",
-        "#E5E5E5",
-        "#D4D4D4",
-        "#A3A3A3",
-        "#1D4ED8",
-        "#1E40AF",
-        "#000000",
+        "rgba(29, 78, 216, 0.45)",
+        "rgba(37, 99, 235, 0.35)",
+        "rgba(59, 130, 246, 0.25)",
+        "rgba(255, 255, 255, 0.12)",
+        "rgba(255, 255, 255, 0.05)",
+        "rgba(10, 10, 10, 0.8)",
+        "rgba(18, 18, 18, 0.9)",
       ];
 
       function easeOutCubic(x) {
@@ -141,15 +145,9 @@
           if (localT <= 0) continue;
 
           const sizeRatio = isOpening ? easeOutCubic(localT) : easeInCubic(localT);
+          ctx.fillStyle = p.color;
 
-          if (localT >= 0.85) {
-            ctx.fillStyle = "#ffffff";
-          } else {
-            ctx.fillStyle = p.color;
-          }
-
-          const extra = localT >= 0.95 ? 0.75 : 0;
-          const renderSize = PIXEL_SIZE * sizeRatio + extra;
+          const renderSize = PIXEL_SIZE * sizeRatio;
           const offsetX = p.x + (PIXEL_SIZE - renderSize) / 2;
           const offsetY = p.y + (PIXEL_SIZE - renderSize) / 2;
 
@@ -185,6 +183,7 @@
           if (progress === 0) {
             ctx.clearRect(0, 0, width, height);
             card.classList.remove("is-pixel-active");
+            card.classList.remove("is-expanded");
           }
           animReq = null;
         }
@@ -202,6 +201,7 @@
         activate: (originX, originY) => {
           isHovered = true;
           targetProgress = 1.0;
+          card.classList.add("is-expanded");
           updateOriginDelays(originX, originY);
           startAnimation();
         },
@@ -209,10 +209,12 @@
           isHovered = false;
           targetProgress = 0.0;
           card.classList.remove("is-pixel-active");
+          card.classList.remove("is-expanded");
+          card.blur();
           updateOriginDelays(width / 2, height / 2);
           startAnimation();
         },
-        isActive: () => targetProgress > 0.5 || card.classList.contains("is-pixel-active")
+        isActive: () => targetProgress > 0.5 || card.classList.contains("is-expanded") || card.classList.contains("is-pixel-active")
       };
 
       const ro = new ResizeObserver(() => {
@@ -230,7 +232,7 @@
           card._pixelController.activate(mouseX, mouseY);
         });
 
-        card.addEventListener("mouseleave", (e) => {
+        card.addEventListener("mouseleave", () => {
           card._pixelController.deactivate();
         });
       }
@@ -251,15 +253,6 @@
           card._pixelController.activate(clickX, clickY);
         }
       });
-
-      card.addEventListener("focus", () => {
-        deactivateAllCards(card);
-        card._pixelController.activate(width / 2, height / 2);
-      });
-
-      card.addEventListener("blur", () => {
-        card._pixelController.deactivate();
-      });
     });
 
     document.addEventListener("click", (e) => {
@@ -267,6 +260,16 @@
         deactivateAllCards();
       }
     });
+
+    document.addEventListener(
+      "touchstart",
+      (e) => {
+        if (!e.target.closest(".project-card")) {
+          deactivateAllCards();
+        }
+      },
+      { passive: true }
+    );
   }
 
   if ('IntersectionObserver' in window) {
