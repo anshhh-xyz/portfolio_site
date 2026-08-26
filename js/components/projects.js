@@ -39,16 +39,17 @@
       let lastTime = performance.now();
 
       const PIXEL_SIZE = 16;
-      const DURATION = 320;
+      const DURATION = 340;
 
       const FLASH_COLORS = [
-        "rgba(29, 78, 216, 0.45)",
-        "rgba(37, 99, 235, 0.35)",
-        "rgba(59, 130, 246, 0.25)",
-        "rgba(255, 255, 255, 0.12)",
-        "rgba(255, 255, 255, 0.05)",
-        "rgba(10, 10, 10, 0.8)",
-        "rgba(18, 18, 18, 0.9)",
+        "#FFFFFF",
+        "#F5F5F5",
+        "#E5E5E5",
+        "#D4D4D4",
+        "#A3A3A3",
+        "#1D4ED8",
+        "#2563EB",
+        "#000000",
       ];
 
       function easeOutCubic(x) {
@@ -145,9 +146,15 @@
           if (localT <= 0) continue;
 
           const sizeRatio = isOpening ? easeOutCubic(localT) : easeInCubic(localT);
-          ctx.fillStyle = p.color;
 
-          const renderSize = PIXEL_SIZE * sizeRatio;
+          if (localT >= 0.85) {
+            ctx.fillStyle = "#ffffff";
+          } else {
+            ctx.fillStyle = p.color;
+          }
+
+          const extra = localT >= 0.95 ? 0.75 : 0;
+          const renderSize = PIXEL_SIZE * sizeRatio + extra;
           const offsetX = p.x + (PIXEL_SIZE - renderSize) / 2;
           const offsetY = p.y + (PIXEL_SIZE - renderSize) / 2;
 
