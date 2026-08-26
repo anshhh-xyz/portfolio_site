@@ -21,10 +21,11 @@ function runHackerEffect(element) {
   element._lastHackedTime = now;
 
   let iteration = 0;
-
   if (element._hackerInterval) {
     clearInterval(element._hackerInterval);
   }
+
+
 
   element.classList.add("is-glitching", "is-hacking");
 
@@ -55,7 +56,7 @@ function runHackerEffect(element) {
 }
 
 function initAsciify() {
-  const elements = document.querySelectorAll("[data-asciify], [data-hacker-text], [data-value], h1");
+  const elements = document.querySelectorAll("[data-asciify]");
   elements.forEach((el) => {
     if (!el.dataset.value) {
       el.dataset.value = el.innerText.trim();
@@ -67,8 +68,8 @@ function initAsciify() {
   });
 
   // Auto-scramble Hero section headings on load and when entering hero
-  const heroElements = document.querySelectorAll("#hero h1, #hero .hero-role, #hero [data-asciify]");
-  
+  const heroElements = document.querySelectorAll("#hero [data-asciify]");
+
   function triggerHeroHeadings() {
     heroElements.forEach((el, index) => {
       setTimeout(() => {
